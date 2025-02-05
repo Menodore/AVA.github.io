@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Period Test - Ava</title>
+    <link rel="stylesheet" href="home.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <img src="logo.png" alt="Ava Logo" class="logo">
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="test-form">
+        <h2>How Normal is Your Period?</h2>
+        <form id="periodForm">
+            <label>Length of Cycle (days):</label>
+            <input type="number" id="length_of_cycle" required>
+
+            <label>Length of Menses (days):</label>
+            <input type="number" id="length_of_menses" required>
+
+            <label>Weight (kg):</label>
+            <input type="number" id="weight" required>
+
+            <label>Height (cm):</label>
+            <input type="number" id="height" required>
+
+            <label>Do you have unusual bleeding?</label>
+            <select id="unusual_bleeding">
+                <option value="no">No</option>
+                <option value="yes">Yes</option>
+            </select>
+
+            <button type="submit">Check Score</button>
+        </form>
+
+        <div id="result"></div>
+    </section>
+
+    <script src="script.js"></script>
+</body>
+</html>
