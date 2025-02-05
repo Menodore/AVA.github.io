@@ -3,23 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Period Test - Ava</title>
-    <link rel="stylesheet" href="home.css">
+    <title>Period Test</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+
     <header>
         <div class="container">
-            <img src="logo.png" alt="Ava Logo" class="logo">
-            <nav>
-                <ul>
-                    <li><a href="index.html">Home</a></li>
-                </ul>
-            </nav>
+            <h1>How Normal is Your Period?</h1>
         </div>
     </header>
 
-    <section class="test-form">
-        <h2>How Normal is Your Period?</h2>
+    <section class="form-section">
         <form id="periodForm">
             <label>Length of Cycle (days):</label>
             <input type="number" id="length_of_cycle" required>
@@ -33,18 +28,42 @@
             <label>Height (cm):</label>
             <input type="number" id="height" required>
 
-            <label>Do you have unusual bleeding?</label>
+            <label>Do you have Unusual Bleeding?</label>
             <select id="unusual_bleeding">
                 <option value="no">No</option>
                 <option value="yes">Yes</option>
             </select>
 
-            <button type="submit">Check Score</button>
+            <button type="submit">Check</button>
         </form>
 
-        <div id="result"></div>
+        <p id="result"></p>
     </section>
 
-    <script src="script.js"></script>
+    <script>
+        document.getElementById("periodForm").addEventListener("submit", function(event) {
+            event.preventDefault();
+
+            let data = {
+                length_of_cycle: document.getElementById("length_of_cycle").value,
+                length_of_menses: document.getElementById("length_of_menses").value,
+                weight: document.getElementById("weight").value,
+                height: document.getElementById("height").value,
+                unusual_bleeding: document.getElementById("unusual_bleeding").value
+            };
+
+            fetch("http://127.0.0.1:5000/predict", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(data)
+            })
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById("result").textContent = "Prediction: " + data.prediction;
+            })
+            .catch(error => console.error("Error:", error));
+        });
+    </script>
+
 </body>
 </html>
