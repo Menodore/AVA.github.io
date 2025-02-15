@@ -27,7 +27,7 @@ header {
     max-height: 100%; /* Ensure it does not overflow */
 }
 nav h1 {
-    font-size: 90%;
+    font-size: 150px;
     font-style: italic;
     font-weight: bold;
     color:#FFFFFF;
