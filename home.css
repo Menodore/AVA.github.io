@@ -26,6 +26,11 @@ header {
     height: auto; /* Maintain aspect ratio */
     max-height: 100%; /* Ensure it does not overflow */
 }
+nav h1 {
+    font-size: 36px;
+    font-weight: bold;
+    color:#FFFFFF;
+}
 nav ul {
     list-style: none;
     display: flex;
