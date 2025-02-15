@@ -14,7 +14,6 @@ header {
     padding: 20px 10%;
     background-color: #A986D1; /* Muted Purple */
     color: white;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 .container {
     display: flex;
@@ -27,9 +26,9 @@ header {
     max-height: 100%; /* Ensure it does not overflow */
 }
 nav h1 {
-    font-size: 3rem; /* Adjust as needed */
-    font-family: 'Pacifico', cursive; /* Cursive font */
-    color: #333; /* Change to match design */
+    font-size: 5rem; /* Adjust as needed */
+    font-family: 'Pacifico', cursive; 
+    color: #ffffff; 
     margin: 0; /* Remove extra spacing */
     white-space: nowrap; /* Prevents text from breaking */
 }
