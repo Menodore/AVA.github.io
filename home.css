@@ -18,7 +18,7 @@ header {
 .container {
     display: flex;
     align-items: center;
-    width: 100%;
+    width: 80%;
 }
 .logo {
     width: 70%; /* Make the image cover 50% of the header */
