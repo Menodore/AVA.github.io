@@ -133,3 +133,19 @@ footer {
     text-align: center;
     padding: 10px;
 }
+a {
+    text-decoration: none; /* Removes underline */
+    color: black; /* Default color */
+}
+
+a:visited {
+    color: purple; /* Changes color after click */
+}
+
+a:hover {
+    color: blue; /* Optional: Change color when hovering */
+}
+
+a:active {
+    color: red; /* Optional: Change color when clicked */
+}
