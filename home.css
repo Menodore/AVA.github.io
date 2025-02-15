@@ -11,7 +11,7 @@ header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 20px 10%;
+    padding: 10%;
     background-color: #A986D1; /* Muted Purple */
     color: white;
 }
@@ -23,7 +23,7 @@ header {
 .logo {
     width: 70%; /* Make the image cover 50% of the header */
     height: auto; /* Maintain aspect ratio */
-    max-height: 100%; /* Ensure it does not overflow */
+    max-height: 70%; /* Ensure it does not overflow */
 }
 nav h1 {
     font-size: 5rem; /* Adjust as needed */
