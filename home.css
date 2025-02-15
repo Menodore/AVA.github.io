@@ -3,7 +3,7 @@ body {
     font-family: 'Arial', sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #FCD9E5; /* Soft Pink */
+    background-color: #A986D1; /* Soft Pink */
     color: #333333;
 }
 
@@ -27,11 +27,13 @@ header {
     max-height: 100%; /* Ensure it does not overflow */
 }
 nav h1 {
-    font-size: 150px;
-    font-style: italic;
-    font-weight: bold;
-    color:#FFFFFF;
+    font-size: 3rem; /* Adjust as needed */
+    font-family: 'Pacifico', cursive; /* Cursive font */
+    color: #333; /* Change to match design */
+    margin: 0; /* Remove extra spacing */
+    white-space: nowrap; /* Prevents text from breaking */
 }
+
 nav ul {
     list-style: none;
     display: flex;
