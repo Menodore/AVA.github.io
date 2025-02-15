@@ -27,7 +27,8 @@ header {
     max-height: 100%; /* Ensure it does not overflow */
 }
 nav h1 {
-    font-size: 36px;
+    font-size: 50%;
+    font-style: italic;
     font-weight: bold;
     color:#FFFFFF;
 }
@@ -54,6 +55,25 @@ nav ul li a.btn-signup {
 nav ul li a.btn-signup:hover {
     background-color: #A3D8FF;
 }
+.scroll-btn {
+    position: absolute;
+    left: 50%;
+    bottom: 10px;
+    transform: translateX(-50%);
+    padding: 10px 15px;
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    border-radius: 5px;
+    transition: background 0.3s;
+}
+
+.scroll-btn:hover {
+    background-color: #0056b3;
+}
+
 
 .hero {
     background: linear-gradient(120deg, #B3E6FF, #E6D5F9);

@@ -19,15 +19,23 @@
                 </ul>
             </nav>
         </div>
+        <button class="scroll-btn" onclick="scrollToSection()">↓ Scroll Down</button>
     </header>
 
-    <section class="hero">
+    <section id="hero" class ="hero">
         <div class="hero-content">
             <h1>Welcome to Ava</h1>
             <p>Ava is your trusted wellness companion. Whether its understanding your cycle, navigating PCOS, thyroid health, or lifes other changes, Ava is here to guide you with care and knowledge, helping you embrace your wellness journey with confidence.</p>
             <a href="signup.html" class="btn-cta">Start Your Journey</a>
         </div>
     </section>
+    <script>
+        function scrollToSection() {
+            document.getElementById("hero").scrollIntoView({
+                behavior: "smooth"
+            });
+        }
+    </script>
 
     <section class="features">
         <h2>Discover Ava</h2>
