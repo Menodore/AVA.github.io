@@ -14,7 +14,6 @@
                     <h1>AVA</h1>
                 </nav>
             </div>
-            <button class="scroll-btn" onclick="scrollToSection()">↓ Scroll Down</button>
         </header>
         <section id="hero" class="hero">
             <div class="hero-content">
@@ -90,11 +89,7 @@
             <p>&copy; 2025 Ava. All rights reserved.</p>
         </footer>
         <script>
-            function scrollToSection() {
-                document.getElementById("hero").scrollIntoView({
-                    behavior: "smooth"
-                });
-            }
+            
             function searchArticles() {
                 let input = document.getElementById("searchBar").value.toLowerCase();
                 let cards = document.querySelectorAll(".feature-card");
