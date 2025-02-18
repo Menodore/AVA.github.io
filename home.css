@@ -11,7 +11,7 @@ header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 10%;
+    height :10%;
     background-color: #A986D1; /* Muted Purple */
     color: white;
 }
