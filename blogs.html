@@ -22,15 +22,12 @@
                 <p>Read more on topics that concern you from experts. The Articles are Updated everyday!</p>
             </div>
         </section>
-        <script>
-            function scrollToSection() {
-                document.getElementById("hero").scrollIntoView({
-                    behavior: "smooth"
-                });
-            }
-        </script>
+        
         <section class="features">
+        
             <h2>Discover Blogs</h2>
+            <input type="text" id="searchBar" placeholder="Search articles..." onkeyup="searchArticles()">
+
             <div class="features-grid">
                 <div class="feature-card">
                     <a href="https://www.womenshealthmag.com/health/g19683170/thyroid-symptoms-in-women/">
@@ -92,5 +89,25 @@
         <footer>
             <p>&copy; 2025 Ava. All rights reserved.</p>
         </footer>
+        <script>
+            function scrollToSection() {
+                document.getElementById("hero").scrollIntoView({
+                    behavior: "smooth"
+                });
+            }
+            function searchArticles() {
+                let input = document.getElementById("searchBar").value.toLowerCase();
+                let cards = document.querySelectorAll(".feature-card");
+
+                cards.forEach(card => {
+                    let title = card.querySelector("h3").innerText.toLowerCase();
+                    if (title.includes(input)) {
+                        card.style.display = "block"; // Show matching articles
+                    } else {
+                        card.style.display = "none"; // Hide non-matching articles
+                    }
+                });
+            }
+        </script>
     </body>
 </html>
