@@ -6,6 +6,24 @@ body {
     background-color: #A986D1; /* Soft Pink */
     color: #333333;
 }
+.question {
+    background: white;
+    padding: 15px;
+    margin: 10px 0;
+    border-radius: 8px;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.question p {
+    font-weight: bold;
+    margin-bottom: 8px;
+}
+
+.question label {
+    display: block;
+    padding: 5px 0;
+}
+
 
 header {
     display: flex;

@@ -4,19 +4,24 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Thyroid Symptom Checker</title>
-    <style>
-        body { font-family: Arial, sans-serif; padding: 20px; max-width: 600px; margin: auto; }
-        h2 { color: #d63384; }
-        .question { margin: 15px 0; }
-        button { padding: 10px 15px; background: #d63384; color: white; border: none; cursor: pointer; }
-        button:hover { background: #c2185b; }
-        #result { margin-top: 20px; font-weight: bold; }
-    </style>
+    <link rel="stylesheet" href="home.css">
+    
 </head>
 <body>
+    <header>
+        <div class="container">
+            <img src="logo.png" alt="Ava Logo" class="logo">
+            <nav>
+                <h1>AVA</h1>
+            </nav>
+        </div>
+    </header>
+    <section id="hero" class="hero">
+        <div class="hero-content">
     <h2>Thyroid Symptom Checker</h2>
     <p>Answer the following questions to check for possible thyroid imbalances.</p>
-
+    </div>
+    </section>
     <form id="thyroidForm">
         <div class="question">
             <p>1. Unusual weight gain or difficulty losing weight</p>
@@ -101,8 +106,8 @@
             <label><input type="radio" name="q12" value="1"> Often</label>
             <label><input type="radio" name="q12" value="2"> Always</label>
         </div>
-
-        <button type="button" onclick="calculateThyroidRisk()">Check Symptoms</button>
+        <br>
+        <button type="button" onclick="calculateThyroidRisk()" class ="btn-cta">Check Symptoms</button>
     </form>
 
     <div id="result"></div>
