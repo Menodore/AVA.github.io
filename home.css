@@ -25,6 +25,20 @@ body {
     padding: 5px 0;
 }
 
+.search-bar {
+    width: 100%; /* Adjust width as needed */
+    padding: 10px 15px;
+    border-radius: 25px; /* Rounded corners */
+    border: 1px solid #ccc; /* Optional border */
+    background-color: #f0f0f0; /* Different inside color */
+    font-size: 18px; /* Bigger text */
+    outline: none;
+}
+
+.search-bar:focus {
+    border-color: #007BFF; /* Highlight border on focus */
+    background-color: #ffffff; /* Lighter background when typing */
+}
 
 
 header {
