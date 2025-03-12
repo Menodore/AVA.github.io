@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ADHD Symptom Checker</title>
+    <title>Gambling Addiction</title>
     <link rel="stylesheet" href="home.css">
     
 </head>
@@ -18,90 +18,90 @@
     </header>
     <section id="hero" class="hero">
         <div class="hero-content">
-    <h1>ADHD Symptom Checker</h1>
-    <p>Answer the following questions to check for possible ADHD symptoms in you as an adult!</p>
+    <h1>Gambling Addiction Symptom Checker</h1>
+    <p></p>
     </div>
     </section>
-    <form id="ADHDForm">
+    <form id="GAForm">
         <div class="question">
-            <p>1. </p>
+            <p>1. Do you frequently think about gambling, such as past experiences or planning your next bet?</p>
             <label><input type="radio" name="q1" value="0"> Never</label>
             <label><input type="radio" name="q1" value="1"> Often</label>
             <label><input type="radio" name="q1" value="2"> Always</label>
         </div>
 
         <div class="question">
-            <p>2. </p>
+            <p>2. Do you feel restless or irritable when trying to cut down or stop gambling?</p>
             <label><input type="radio" name="q2" value="0"> Never</label>
             <label><input type="radio" name="q2" value="1"> Often</label>
             <label><input type="radio" name="q2" value="2"> Always</label>
         </div>
 
         <div class="question">
-            <p>3.</p>
+            <p>3. Do you gamble to escape stress, anxiety, or depression?</p>
             <label><input type="radio" name="q3" value="0"> Never</label>
             <label><input type="radio" name="q3" value="1"> Often</label>
             <label><input type="radio" name="q3" value="2"> Always</label>
         </div>
 
         <div class="question">
-            <p>4. </p>
+            <p>4. Have you needed to bet increasing amounts of money to feel excited while gambling?</p>
             <label><input type="radio" name="q4" value="0"> Never</label>
             <label><input type="radio" name="q4" value="1"> Often</label>
             <label><input type="radio" name="q4" value="2"> Always</label>
         </div>
 
         <div class="question">
-            <p>5. </p>
+            <p>5. Have you lied to family or friends about how much you gamble?</p>
             <label><input type="radio" name="q5" value="0"> Never</label>
             <label><input type="radio" name="q5" value="1"> Often</label>
             <label><input type="radio" name="q5" value="2"> Always</label>
         </div>
 
         <div class="question">
-            <p>6. </p>
+            <p>6. Have you ever tried to stop gambling but found yourself unable to?</p>
             <label><input type="radio" name="q6" value="0"> Never</label>
             <label><input type="radio" name="q6" value="1"> Often</label>
             <label><input type="radio" name="q6" value="2"> Always</label>
         </div>
 
         <div class="question">
-            <p>7. </p>
+            <p>7. Do you chase losses by gambling more to try to recover lost money?</p>
             <label><input type="radio" name="q7" value="0"> Never</label>
             <label><input type="radio" name="q7" value="1"> Often</label>
             <label><input type="radio" name="q7" value="2"> Always</label>
         </div>
 
         <div class="question">
-            <p>8. </p>
+            <p>8. Has gambling caused problems in your relationships, work, or daily life?</p>
             <label><input type="radio" name="q8" value="0"> Never</label>
             <label><input type="radio" name="q8" value="1"> Often</label>
             <label><input type="radio" name="q8" value="2"> Always</label>
         </div>
 
         <div class="question">
-            <p>9. </p>
+            <p>9. Have you borrowed money, sold belongings, or taken loans to fund your gambling?</p>
             <label><input type="radio" name="q9" value="0"> Never</label>
             <label><input type="radio" name="q9" value="1"> Often</label>
             <label><input type="radio" name="q9" value="2"> Always</label>
         </div>
 
         <div class="question">
-            <p>10. </p>
+            <p>10. Do you feel guilty or regretful after gambling but continue doing it?</p>
             <label><input type="radio" name="q10" value="0"> Never</label>
             <label><input type="radio" name="q10" value="1"> Often</label>
             <label><input type="radio" name="q10" value="2"> Always</label>
         </div>
 
         <div class="question">
-            <p>11. </p>
+            <p>11. Have you missed important events or responsibilities due to gambling?</p>
             <label><input type="radio" name="q11" value="0"> Never</label>
             <label><input type="radio" name="q11" value="1"> Often</label>
             <label><input type="radio" name="q11" value="2"> Always</label>
         </div>
 
         <div class="question">
-            <p>12. </p>
+            <p>12. Have you ever felt that gambling is out of your control?</p>
             <label><input type="radio" name="q12" value="0"> Never</label>
             <label><input type="radio" name="q12" value="1"> Often</label>
             <label><input type="radio" name="q12" value="2"> Always</label>
@@ -125,11 +125,11 @@
 
             let resultText = "<h3>Assessment Result:</h3>";
             if (totalScore < 6) {
-                resultText += "<p>No significant symptoms of thyroid imbalance detected. If concerned, consult a doctor.</p>";
+                resultText += "<p>No significant symptoms of Gambling Addiction detected.</p>";
             } else if (totalScore < 14) {
-                resultText += "<p>Mild symptoms detected. Keep monitoring and consider discussing with a healthcare professional.</p>";
+                resultText += "<p>Mild symptoms detected. Keep monitoring and consider discussing with a professional or support system.</p>";
             } else {
-                resultText += "<p>High likelihood of thyroid imbalance. Please consult a doctor for further evaluation.</p>";
+                resultText += "<p>High likelihood of Gambling Addiction. Please consult a professional for further help.</p>";
             }
 
             document.getElementById("result").innerHTML = resultText;
