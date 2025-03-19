@@ -18,18 +18,18 @@
     </header>
     <section id="hero" class="hero">
         <div class="hero-content">
-    <h1>Narcissm Symptom Checker</h1>
+    <h1>Narcissism Symptom Checker</h1>
     <p>Take the test to see if you or someone you know may be a narcissist</p>
     </div>
     </section>
     <form id="NarcForm">
         <div class="question">
             <p>0. Who are you taking this test for?</p>
-            <label><input type="radio"> Yourself</label>
-            <label><input type="radio">Partner</label>
-            <label><input type="radio">Child</label>
-            <label><input type="radio">Parent</label>
-            <label><input type="radio">Someone Else</label>
+            <label><input type="radio" name="q1" value="0">Yourself</label>
+            <label><input type="radio" name="q1" value="0">Partner</label>
+            <label><input type="radio" name="q1" value="0">Child</label>
+            <label><input type="radio" name="q1" value="0">Parent</label>
+            <label><input type="radio" name="q1" value="0">Someone Else</label>
         </div>
         <div class="question">
             <p>1. Do you often feel like you are more special or unique than others?</p>
@@ -133,11 +133,11 @@
 
             let resultText = "<h3>Assessment Result:</h3>";
             if (totalScore < 6) {
-                resultText += "<p>No significant signs of Narcissm detected.</p>";
+                resultText += "<p>No significant signs of Narcissism detected.</p>";
             } else if (totalScore < 14) {
                 resultText += "<p>Mild signs detected. Seek professional help if you are concerned.</p>";
             } else {
-                resultText += "<p>High signs of Narcissm detected. Please seek professional help.</p>";
+                resultText += "<p>High signs of Narcissism detected. Please seek professional help.</p>";
             }
 
             document.getElementById("result").innerHTML = resultText;
