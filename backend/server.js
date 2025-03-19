@@ -2,6 +2,7 @@ const express = require('express');
 const mysql = require('mysql2');
 const bodyParser = require('body-parser');
 const cors = require('cors');
+const path = require('path');
 
 const app = express();
 const port = 3000;
@@ -9,6 +10,7 @@ const port = 3000;
 // Middleware
 app.use(bodyParser.json());
 app.use(cors());
+app.use(express.static(path.join(__dirname, '../project-folder'))); // Serve static files from the project folder
 
 // MySQL Connection
 const db = mysql.createConnection({
@@ -28,7 +30,8 @@ db.query(`
   CREATE TABLE IF NOT EXISTS users (
     id INT AUTO_INCREMENT PRIMARY KEY,
     email VARCHAR(255) NOT NULL UNIQUE,
-    password VARCHAR(255) NOT NULL
+    password VARCHAR(255) NOT NULL,
+    name VARCHAR(255) NOT NULL
   )
 `);
 
@@ -52,22 +55,34 @@ app.post('/login', (req, res) => {
     if (err) throw err;
 
     if (results.length > 0) {
-      res.status(200).json({ message: 'Login successful!', user: results[0] });
+      const user = results[0];
+      res.status(200).json({ message: 'Login successful!', user });
     } else {
       res.status(401).json({ message: 'Invalid email or password.' });
     }
   });
 });
 
-// Save Test Result Endpoint
-app.post('/save-result', (req, res) => {
-  const { userId, result } = req.body;
+// Signup Endpoint
+app.post('/signup', (req, res) => {
+  const { email, password, name } = req.body;
 
-  const query = 'INSERT INTO test_results (user_id, result) VALUES (?, ?)';
-  db.query(query, [userId, result], (err, results) => {
+  // Check if user already exists
+  const checkQuery = 'SELECT * FROM users WHERE email = ?';
+  db.query(checkQuery, [email], (err, results) => {
     if (err) throw err;
 
-    res.status(200).json({ message: 'Test result saved!' });
+    if (results.length > 0) {
+      res.status(400).json({ message: 'User already exists.' });
+    } else {
+      // Insert new user
+      const insertQuery = 'INSERT INTO users (email, password, name) VALUES (?, ?, ?)';
+      db.query(insertQuery, [email, password, name], (err, results) => {
+        if (err) throw err;
+
+        res.status(201).json({ message: 'User registered successfully!' });
+      });
+    }
   });
 });
 
@@ -75,63 +90,3 @@ app.post('/save-result', (req, res) => {
 app.listen(port, () => {
   console.log(`Server running on http://localhost:${port}`);
 });
-
-document.getElementById('loginForm').addEventListener('submit', async (e) => {
-    e.preventDefault(); // Prevent default form submission
-
-    const email = document.getElementById('email').value;
-    const password = document.getElementById('password').value;
-
-    try {
-        const response = await fetch('http://localhost:3000/login', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ email, password })
-        });
-
-        const data = await response.json();
-
-        if (response.ok) {
-            alert(data.message);
-            const userId = data.user.id;
-
-            // Simulate a test result (replace with actual test logic)
-            const testResult = 'Pass';
-            await fetch('http://localhost:3000/save-result', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ userId, result: testResult })
-            });
-
-            alert('Test result saved!');
-        } else {
-            alert(data.message);
-        }
-    } catch (error) {
-        console.error('Error:', error);
-        alert('An error occurred. Please try again.');
-    }
-});
-
-// Signup Endpoint
-app.post('/signup', (req, res) => {
-    const { email, password } = req.body;
-  
-    // Check if user already exists
-    const checkQuery = 'SELECT * FROM users WHERE email = ?';
-    db.query(checkQuery, [email], (err, results) => {
-      if (err) throw err;
-  
-      if (results.length > 0) {
-        res.status(400).json({ message: 'User already exists.' });
-      } else {
-        // Insert new user
-        const insertQuery = 'INSERT INTO users (email, password) VALUES (?, ?)';
-        db.query(insertQuery, [email, password], (err, results) => {
-          if (err) throw err;
-  
-          res.status(201).json({ message: 'User registered successfully!' });
-        });
-      }
-    });
-  });
