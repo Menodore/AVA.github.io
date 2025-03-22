@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Mental Health Resources</title>
+        <link rel="stylesheet" href="home.css">
+    </head>
+    <body>
+        <header>
+            <div class="container">
+                <img src="logo.png" alt="Ava Logo" class="logo">
+                <nav>
+                    <h1>AVA</h1>
+                </nav>
+            </div>
+        </header>
+        <section id="hero" class="hero">
+            <div class="hero-content">
+                <h1>Welcome to our Mental Health corner!!!</h1>
+                <p>Feel free to explore our Tests curated Just for YOU</p>
+            </div>
+        </section>
+        
+        <section class="features">
+        
+            <h2>Discover our Mental Health Symptom Checkers!</h2>
+            <input type="text" id="searchBar" class="search-bar" placeholder="Search Tests..." onkeyup="searchArticles()">
+            <br> <br> 
+            <div class="features-grid">
+                <div class="feature-card">
+                    <a href="mental_issues/adhd.html">
+                        <h3>ADHD Test</h3>
+                        <p>Take this test to see if you have ADHD</p>
+                    </a>
+                </div>
+                
+                <div class="feature-card">
+                    <a href ="mental_issues/anxiety.html">
+                        <h3>Anxiety Test</h3>
+                        <p>Take this test to see if you have anxiety</p>
+
+                    </a>
+                </div>
+                <div class="feature-card">
+                    <a href="mental_issues/bpd.html">
+                        <h3>Borderline Personality Disorder</h3>
+                        <p></p>
+                    </a>
+                    
+                </div>
+                <div class="feature-card">
+                    <a href="mental_issues/depression.html">
+                        <h3>Despression Test</h3>
+                        <p></p>
+                    </a>
+                    
+                </div>
+                <div class="feature-card">
+                    <a href="mental_issues/eating_disorder.html">
+                        <h3>Eating Disorders</h3>
+                        <p></p>
+                    </a>
+                    
+                </div>
+                <div class="feature-card">
+                    <a href="mental_issues/gambling_addiction.html">
+                        <h3>Gambling Addiction</h3>
+                        <p></p>
+                    </a>
+                    
+                </div>
+                <div class="feature-card">
+                    <a href="mental_issues/maina.html">
+                        <h3>Maina</h3>
+                        <p></p>
+                    </a>
+                </div>
+                <div class="feature-card">
+                    <a href="mental_issues/narc.html">
+                        <h3>Narcissim</h3>
+                        <p></p>
+                    </a>
+                </div>
+                <div class="feature-card">
+                    <a href="mental_issues/ppd.html">
+                        <h3>Post Partum Depression</h3>
+                        <p></p>
+                    </a>
+                </div>
+                <div class="feature-card">
+                    <a href="mental_issues/ptsd.html">
+                        <h3>Post-traumatic Stress Diorder</h3>
+                        <p></p>
+                    </a>
+                </div>
+            </div>
+        </section>
+    
+        <footer>
+            <p>&copy; 2025 Ava. All rights reserved.</p>
+        </footer>
+        <script>
+            
+            function searchArticles() {
+                let input = document.getElementById("searchBar").value.toLowerCase();
+                let cards = document.querySelectorAll(".feature-card");
+
+                cards.forEach(card => {
+                    let title = card.querySelector("h3").innerText.toLowerCase();
+                    if (title.includes(input)) {
+                        card.style.display = "block"; // Show matching articles
+                    } else {
+                        card.style.display = "none"; // Hide non-matching articles
+                    }
+                });
+            }
+        </script>
+    </body>
+</html>

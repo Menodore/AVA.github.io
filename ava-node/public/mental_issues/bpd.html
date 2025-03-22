@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BPD Symptom Checker</title>
+    <link rel="stylesheet" href="home.css">
+    
+</head>
+<body>
+    <header>
+        <div class="container">
+            <img src="logo.png" alt="Ava Logo" class="logo">
+            <nav>
+                <h1>AVA</h1>
+            </nav>
+        </div>
+    </header>
+    <section id="hero" class="hero">
+        <div class="hero-content">
+    <h1>BPD Symptom Checker</h1>
+    <p></p> 
+    </div>
+    </section>
+    <form id="BPDForm">
+        <div class="question">
+            <p>1. Do you experience intense mood swings that change within hours or a day?</p>
+            <label><input type="radio" name="q1" value="0"> Never</label>
+            <label><input type="radio" name="q1" value="1"> Often</label>
+            <label><input type="radio" name="q1" value="2"> Always</label>
+        </div>
+
+        <div class="question">
+            <p>2. Do you often feel empty or struggle with a lack of identity?</p>
+            <label><input type="radio" name="q2" value="0"> Never</label>
+            <label><input type="radio" name="q2" value="1"> Often</label>
+            <label><input type="radio" name="q2" value="2"> Always</label>
+        </div>
+
+        <div class="question">
+            <p>3. Do you fear being abandoned, even in minor situations?</p>
+            <label><input type="radio" name="q3" value="0"> Never</label>
+            <label><input type="radio" name="q3" value="1"> Often</label>
+            <label><input type="radio" name="q3" value="2"> Always</label>
+        </div>
+
+        <div class="question">
+            <p>4. Do your relationships feel unstable, shifting between extreme closeness and sudden distance?</p>
+            <label><input type="radio" name="q4" value="0"> Never</label>
+            <label><input type="radio" name="q4" value="1"> Often</label>
+            <label><input type="radio" name="q4" value="2"> Always</label>
+        </div>
+
+        <div class="question">
+            <p>5. Do you have impulsive behaviors, such as reckless spending, substance use, or self-destructive actions?</p>
+            <label><input type="radio" name="q5" value="0"> Never</label>
+            <label><input type="radio" name="q5" value="1"> Often</label>
+            <label><input type="radio" name="q5" value="2"> Always</label>
+        </div>
+
+        <div class="question">
+            <p>6. Do you experience intense anger that is difficult to control?</p>
+            <label><input type="radio" name="q6" value="0"> Never</label>
+            <label><input type="radio" name="q6" value="1"> Often</label>
+            <label><input type="radio" name="q6" value="2"> Always</label>
+        </div>
+
+        <div class="question">
+            <p>7. Do you engage in self-harm or have recurring suicidal thoughts?</p>
+            <label><input type="radio" name="q7" value="0"> Never</label>
+            <label><input type="radio" name="q7" value="1"> Often</label>
+            <label><input type="radio" name="q7" value="2"> Always</label>
+        </div>
+
+        <div class="question">
+            <p>8. Do you feel disconnected from yourself or experience moments of dissociation?</p>
+            <label><input type="radio" name="q8" value="0"> Never</label>
+            <label><input type="radio" name="q8" value="1"> Often</label>
+            <label><input type="radio" name="q8" value="2"> Always</label>
+        </div>
+
+        <div class="question">
+            <p>9. Do small things trigger overwhelming emotional reactions?</p>
+            <label><input type="radio" name="q9" value="0"> Never</label>
+            <label><input type="radio" name="q9" value="1"> Often</label>
+            <label><input type="radio" name="q9" value="2"> Always</label>
+        </div>
+
+        <div class="question">
+            <p>10. Do you struggle with trusting others, feeling paranoid or suspicious?</p>
+            <label><input type="radio" name="q10" value="0"> Never</label>
+            <label><input type="radio" name="q10" value="1"> Often</label>
+            <label><input type="radio" name="q10" value="2"> Always</label>
+        </div>
+
+        <div class="question">
+            <p>11. Do you frequently feel misunderstood or like no one cares about you?</p>
+            <label><input type="radio" name="q11" value="0"> Never</label>
+            <label><input type="radio" name="q11" value="1"> Often</label>
+            <label><input type="radio" name="q11" value="2"> Always</label>
+        </div>
+
+        <div class="question">
+            <p>12. Do you struggle with intense feelings of guilt or shame over your actions?</p>
+            <label><input type="radio" name="q12" value="0"> Never</label>
+            <label><input type="radio" name="q12" value="1"> Often</label>
+            <label><input type="radio" name="q12" value="2"> Always</label>
+        </div>
+        <br>
+        <button type="button" onclick="calculateRisk()" class ="btn-cta">Check Symptoms</button>
+    </form>
+
+    <div id="result"></div>
+    
+
+    <script>
+        function calculateRisk() {
+            let totalScore = 0;
+            for (let i = 1; i <= 12; i++) {
+                let selected = document.querySelector(`input[name="q${i}"]:checked`);
+                if (selected) {
+                    totalScore += parseInt(selected.value);
+                }
+            }
+
+            let resultText = "<h3>Assessment Result:</h3>";
+            if (totalScore < 6) {
+                resultText += "<p>No significant symptoms of Borderline Personality Disorder detected.</p>";
+            } else if (totalScore < 14) {
+                resultText += "<p>Mild symptoms detected. Keep monitoring.</p>";
+            } else {
+                resultText += "<p>High likelihood of Borderline Personality Disorder. Please consult a doctor for further evaluation.</p>";
+            }
+
+            document.getElementById("result").innerHTML = resultText;
+        }
+        
+    </script>
+</body>
+</html>

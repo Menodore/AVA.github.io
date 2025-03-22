@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Curated Blogs For You</title>
+        <link rel="stylesheet" href="home.css">
+    </head>
+    <body>
+        <header>
+            <div class="container">
+                <img src="logo.png" alt="Ava Logo" class="logo">
+                <nav>
+                    <h1>AVA</h1>
+                </nav>
+            </div>
+        </header>
+        <section id="hero" class="hero">
+            <div class="hero-content">
+                <h1>Welcome to Blogs made Just for You!!!</h1>
+                <p>Read more on topics that concern you from experts. The Articles are Updated everyday!</p>
+            </div>
+        </section>
+        
+        <section class="features">
+        
+            <h2>Discover Blogs</h2>
+            <input type="text" id="searchBar" class="search-bar" placeholder="Search articles..." onkeyup="searchArticles()">
+            <br> <br> 
+            <div class="features-grid">
+                <div class="feature-card">
+                    <a href="https://www.womenshealthmag.com/health/g19683170/thyroid-symptoms-in-women/">
+                        <h3>14 Thyroid Symptoms In Women That Could Point To A Serious Problem</h3>
+                        <p>Read this Article from Women'sHealth!</p>
+                    </a>
+                </div>
+                
+                <div class="feature-card">
+                    <a href ="https://my.clevelandclinic.org/health/diseases/8316-polycystic-ovary-syndrome-pcos">
+                        <h3>Polycystic Ovary Syndrome (PCOS)</h3>
+                        <p>Learn more about PCOS from Cleveland Clinic!</p>
+
+                    </a>
+                </div>
+                <div class="feature-card">
+                    <a href="https://www.eatingwell.com/article/287742/10-amazing-health-benefits-of-eating-more-fiber/">
+                        <h3>10 Benefits of Eating More Fiber</h3>
+                        <p>Discover the benefits of Fiber from EatingWell!</p>
+                    </a>
+                    
+                </div>
+                <div class="feature-card">
+                    <a href="https://drhrishikeshpai.com/pcod-management-living-with-pcod-and-tips-to-manage-it/">
+                        <h3>Living with PCOD and Tips to Manage it</h3>
+                        <p>Learn more on PCOD from Dr. Hrishikesh Pai!</p>
+                    </a>
+                    
+                </div>
+                <div class="feature-card">
+                    <a href="https://tinybuddha.com/blog/10-things-to-do-when-you-feel-sad-hopeless-and-defeated/">
+                        <h3>10 Things to Do When You Feel Sad, Hopeless, and Defeated</h3>
+                        <p>Read this article from Tiny Buddha!</p>
+                    </a>
+                    
+                </div>
+                <div class="feature-card">
+                    <a href="https://www.beyondblue.org.au/mental-health/anxiety/treatments-for-anxiety/anxiety-management-strategie">
+                        <h3>Anxiety management strategies</h3>
+                        <p>Discover 10 Anxiety Management Strategies from Beyond Blue here!</p>
+                    </a>
+                    
+                </div>
+                <div class="feature-card">
+                    <a href="https://www.psychologytoday.com/us/blog/unpacking-anxiety/202312/facing-your-fears">
+                        <h3>Facing Your Fear</h3>
+                        <p>Feeling like a Scared cat? We do too!!</p>
+                    </a>
+                </div>
+                <div class="feature-card">
+                    <a href="https://blog.calm.com/blog/feeling-hopeless">
+                        <h3>10 ways to support yourself when you're feeling hopeless</h3>
+                        <p>Hopeless? You aren't alone.</p>
+                    </a>
+                </div>
+            </div>
+        </section>
+    
+        <footer>
+            <p>&copy; 2025 Ava. All rights reserved.</p>
+        </footer>
+        <script>
+            
+            function searchArticles() {
+                let input = document.getElementById("searchBar").value.toLowerCase();
+                let cards = document.querySelectorAll(".feature-card");
+
+                cards.forEach(card => {
+                    let title = card.querySelector("h3").innerText.toLowerCase();
+                    if (title.includes(input)) {
+                        card.style.display = "block"; // Show matching articles
+                    } else {
+                        card.style.display = "none"; // Hide non-matching articles
+                    }
+                });
+            }
+        </script>
+    </body>
+</html>
