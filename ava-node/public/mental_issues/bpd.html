@@ -1,140 +1,719 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BPD Symptom Checker</title>
-    <link rel="stylesheet" href="home.css">
-    
+    <title>BPD Symptom Checker | AVA</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #7209b7;
+            --primary-light: #9d4edd;
+            --secondary: #560bad;
+            --dark: #1a1a2e;
+            --light: #f8f9fa;
+            --success: #4cc9f0;
+            --warning: #f72585;
+            --gray: #adb5bd;
+            --gray-light: #e9ecef;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.6;
+            color: var(--dark);
+            background-color: #f9f5ff;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        header {
+            background-color: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 15px 0;
+        }
+
+        .logo {
+            height: 40px;
+            width: auto;
+        }
+
+        .brand {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--primary);
+            margin-left: 10px;
+        }
+
+        .hero {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+            padding: 60px 0;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            max-width: 700px;
+            margin: 0 auto;
+            opacity: 0.9;
+        }
+
+        .content-wrapper {
+            display: flex;
+            gap: 30px;
+            padding: 40px 0;
+        }
+
+        .form-container {
+            flex: 1;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            padding: 30px;
+        }
+
+        .results-container {
+            width: 350px;
+            position: sticky;
+            top: 100px;
+            align-self: flex-start;
+        }
+
+        #BPDForm {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .question {
+            background-color: white;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+            border-left: 4px solid var(--primary-light);
+            transition: all 0.3s ease;
+        }
+
+        .question:hover {
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .question p {
+            font-weight: 500;
+            margin-bottom: 15px;
+            font-size: 1.05rem;
+        }
+
+        .radio-group {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .radio-option {
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+        }
+
+        .radio-option input[type="radio"] {
+            appearance: none;
+            width: 18px;
+            height: 18px;
+            border: 2px solid var(--gray);
+            border-radius: 50%;
+            margin-right: 10px;
+            position: relative;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .radio-option input[type="radio"]:checked {
+            border-color: var(--primary);
+        }
+
+        .radio-option input[type="radio"]:checked::after {
+            content: '';
+            position: absolute;
+            top: 2px;
+            left: 2px;
+            width: 10px;
+            height: 10px;
+            background-color: var(--primary);
+            border-radius: 50%;
+        }
+
+        .btn-cta {
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            font-size: 1rem;
+            font-weight: 500;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            align-self: flex-start;
+            margin-top: 10px;
+        }
+
+        .btn-cta:hover {
+            background-color: var(--secondary);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(86, 11, 173, 0.3);
+        }
+
+        #result {
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            padding: 25px;
+            margin-bottom: 20px;
+        }
+
+        .result-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .result-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            color: white;
+            font-size: 1.2rem;
+        }
+
+        .result-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--dark);
+        }
+
+        .result-score {
+            display: inline-block;
+            background: var(--primary-light);
+            color: white;
+            padding: 3px 10px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            margin-top: 5px;
+        }
+
+        .progress-container {
+            margin: 20px 0;
+        }
+
+        .progress-label {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 5px;
+            font-size: 0.9rem;
+            color: var(--dark);
+        }
+
+        .progress-bar {
+            height: 10px;
+            background-color: var(--gray-light);
+            border-radius: 5px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--primary-light), var(--primary));
+            border-radius: 5px;
+            transition: width 0.5s ease;
+        }
+
+        .result-message {
+            line-height: 1.7;
+            margin-top: 15px;
+        }
+
+        .scores-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            font-size: 0.9rem;
+        }
+
+        .scores-table th {
+            background-color: var(--primary);
+            color: white;
+            text-align: left;
+            padding: 10px 15px;
+        }
+
+        .scores-table td {
+            padding: 10px 15px;
+            border-bottom: 1px solid var(--gray-light);
+        }
+
+        .scores-table tr:nth-child(even) {
+            background-color: var(--gray-light);
+        }
+
+        .scores-table tr:hover {
+            background-color: #f0e5ff;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        @media (max-width: 768px) {
+            .content-wrapper {
+                flex-direction: column;
+            }
+            
+            .results-container {
+                width: 100%;
+                position: static;
+            }
+        }
+
+        .warning-note {
+            background-color: #fff3f3;
+            border-left: 4px solid var(--warning);
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 4px;
+            font-size: 0.9rem;
+        }
+    </style>
 </head>
+
 <body>
     <header>
         <div class="container">
-            <img src="logo.png" alt="Ava Logo" class="logo">
-            <nav>
-                <h1>AVA</h1>
-            </nav>
+            <div class="header-content">
+                <div style="display: flex; align-items: center;">
+                    <img src="logo.png" alt="AVA Logo" class="logo">
+                    <span class="brand">AVA</span>
+                </div>
+            </div>
         </div>
     </header>
-    <section id="hero" class="hero">
-        <div class="hero-content">
-    <h1>BPD Symptom Checker</h1>
-    <p></p> 
-    </div>
+
+    <section class="hero">
+        <div class="container">
+            <h1>BPD Symptom Checker</h1>
+            <p>Assess potential symptoms of Borderline Personality Disorder</p>
+        </div>
     </section>
-    <form id="BPDForm">
-        <div class="question">
-            <p>1. Do you experience intense mood swings that change within hours or a day?</p>
-            <label><input type="radio" name="q1" value="0"> Never</label>
-            <label><input type="radio" name="q1" value="1"> Often</label>
-            <label><input type="radio" name="q1" value="2"> Always</label>
-        </div>
 
-        <div class="question">
-            <p>2. Do you often feel empty or struggle with a lack of identity?</p>
-            <label><input type="radio" name="q2" value="0"> Never</label>
-            <label><input type="radio" name="q2" value="1"> Often</label>
-            <label><input type="radio" name="q2" value="2"> Always</label>
-        </div>
+    <div class="container">
+        <div class="content-wrapper">
+            <div class="form-container">
+                <div class="warning-note">
+                    <strong>Important:</strong> This is not a diagnostic tool. Only a qualified mental health professional can diagnose BPD. If you're in crisis, please seek immediate help.
+                </div>
+                <form id="BPDForm">
+                    <div class="question">
+                        <p>1. Do you experience intense mood swings that change within hours or a day?</p>
+                        <div class="radio-group">
+                            <label class="radio-option">
+                                <input type="radio" name="q1" value="0" required> Never
+                            </label>
+                            <label class="radio-option">
+                                <input type="radio" name="q1" value="1"> Often
+                            </label>
+                            <label class="radio-option">
+                                <input type="radio" name="q1" value="2"> Always
+                            </label>
+                        </div>
+                    </div>
 
-        <div class="question">
-            <p>3. Do you fear being abandoned, even in minor situations?</p>
-            <label><input type="radio" name="q3" value="0"> Never</label>
-            <label><input type="radio" name="q3" value="1"> Often</label>
-            <label><input type="radio" name="q3" value="2"> Always</label>
-        </div>
+                    <div class="question">
+                        <p>2. Do you often feel empty or struggle with a lack of identity?</p>
+                        <div class="radio-group">
+                            <label class="radio-option">
+                                <input type="radio" name="q2" value="0"> Never
+                            </label>
+                            <label class="radio-option">
+                                <input type="radio" name="q2" value="1"> Often
+                            </label>
+                            <label class="radio-option">
+                                <input type="radio" name="q2" value="2"> Always
+                            </label>
+                        </div>
+                    </div>
 
-        <div class="question">
-            <p>4. Do your relationships feel unstable, shifting between extreme closeness and sudden distance?</p>
-            <label><input type="radio" name="q4" value="0"> Never</label>
-            <label><input type="radio" name="q4" value="1"> Often</label>
-            <label><input type="radio" name="q4" value="2"> Always</label>
-        </div>
+                    <div class="question">
+                        <p>3. Do you fear being abandoned, even in minor situations?</p>
+                        <div class="radio-group">
+                            <label class="radio-option">
+                                <input type="radio" name="q3" value="0"> Never
+                            </label>
+                            <label class="radio-option">
+                                <input type="radio" name="q3" value="1"> Often
+                            </label>
+                            <label class="radio-option">
+                                <input type="radio" name="q3" value="2"> Always
+                            </label>
+                        </div>
+                    </div>
 
-        <div class="question">
-            <p>5. Do you have impulsive behaviors, such as reckless spending, substance use, or self-destructive actions?</p>
-            <label><input type="radio" name="q5" value="0"> Never</label>
-            <label><input type="radio" name="q5" value="1"> Often</label>
-            <label><input type="radio" name="q5" value="2"> Always</label>
-        </div>
+                    <div class="question">
+                        <p>4. Do your relationships feel unstable, shifting between extreme closeness and sudden distance?</p>
+                        <div class="radio-group">
+                            <label class="radio-option">
+                                <input type="radio" name="q4" value="0"> Never
+                            </label>
+                            <label class="radio-option">
+                                <input type="radio" name="q4" value="1"> Often
+                            </label>
+                            <label class="radio-option">
+                                <input type="radio" name="q4" value="2"> Always
+                            </label>
+                        </div>
+                    </div>
 
-        <div class="question">
-            <p>6. Do you experience intense anger that is difficult to control?</p>
-            <label><input type="radio" name="q6" value="0"> Never</label>
-            <label><input type="radio" name="q6" value="1"> Often</label>
-            <label><input type="radio" name="q6" value="2"> Always</label>
-        </div>
+                    <div class="question">
+                        <p>5. Do you have impulsive behaviors, such as reckless spending, substance use, or self-destructive actions?</p>
+                        <div class="radio-group">
+                            <label class="radio-option">
+                                <input type="radio" name="q5" value="0"> Never
+                            </label>
+                            <label class="radio-option">
+                                <input type="radio" name="q5" value="1"> Often
+                            </label>
+                            <label class="radio-option">
+                                <input type="radio" name="q5" value="2"> Always
+                            </label>
+                        </div>
+                    </div>
 
-        <div class="question">
-            <p>7. Do you engage in self-harm or have recurring suicidal thoughts?</p>
-            <label><input type="radio" name="q7" value="0"> Never</label>
-            <label><input type="radio" name="q7" value="1"> Often</label>
-            <label><input type="radio" name="q7" value="2"> Always</label>
-        </div>
+                    <div class="question">
+                        <p>6. Do you experience intense anger that is difficult to control?</p>
+                        <div class="radio-group">
+                            <label class="radio-option">
+                                <input type="radio" name="q6" value="0"> Never
+                            </label>
+                            <label class="radio-option">
+                                <input type="radio" name="q6" value="1"> Often
+                            </label>
+                            <label class="radio-option">
+                                <input type="radio" name="q6" value="2"> Always
+                            </label>
+                        </div>
+                    </div>
 
-        <div class="question">
-            <p>8. Do you feel disconnected from yourself or experience moments of dissociation?</p>
-            <label><input type="radio" name="q8" value="0"> Never</label>
-            <label><input type="radio" name="q8" value="1"> Often</label>
-            <label><input type="radio" name="q8" value="2"> Always</label>
-        </div>
+                    <div class="question">
+                        <p>7. Do you engage in self-harm or have recurring suicidal thoughts?</p>
+                        <div class="radio-group">
+                            <label class="radio-option">
+                                <input type="radio" name="q7" value="0"> Never
+                            </label>
+                            <label class="radio-option">
+                                <input type="radio" name="q7" value="1"> Often
+                            </label>
+                            <label class="radio-option">
+                                <input type="radio" name="q7" value="2"> Always
+                            </label>
+                        </div>
+                    </div>
 
-        <div class="question">
-            <p>9. Do small things trigger overwhelming emotional reactions?</p>
-            <label><input type="radio" name="q9" value="0"> Never</label>
-            <label><input type="radio" name="q9" value="1"> Often</label>
-            <label><input type="radio" name="q9" value="2"> Always</label>
-        </div>
+                    <div class="question">
+                        <p>8. Do you feel disconnected from yourself or experience moments of dissociation?</p>
+                        <div class="radio-group">
+                            <label class="radio-option">
+                                <input type="radio" name="q8" value="0"> Never
+                            </label>
+                            <label class="radio-option">
+                                <input type="radio" name="q8" value="1"> Often
+                            </label>
+                            <label class="radio-option">
+                                <input type="radio" name="q8" value="2"> Always
+                            </label>
+                        </div>
+                    </div>
 
-        <div class="question">
-            <p>10. Do you struggle with trusting others, feeling paranoid or suspicious?</p>
-            <label><input type="radio" name="q10" value="0"> Never</label>
-            <label><input type="radio" name="q10" value="1"> Often</label>
-            <label><input type="radio" name="q10" value="2"> Always</label>
-        </div>
+                    <div class="question">
+                        <p>9. Do small things trigger overwhelming emotional reactions?</p>
+                        <div class="radio-group">
+                            <label class="radio-option">
+                                <input type="radio" name="q9" value="0"> Never
+                            </label>
+                            <label class="radio-option">
+                                <input type="radio" name="q9" value="1"> Often
+                            </label>
+                            <label class="radio-option">
+                                <input type="radio" name="q9" value="2"> Always
+                            </label>
+                        </div>
+                    </div>
 
-        <div class="question">
-            <p>11. Do you frequently feel misunderstood or like no one cares about you?</p>
-            <label><input type="radio" name="q11" value="0"> Never</label>
-            <label><input type="radio" name="q11" value="1"> Often</label>
-            <label><input type="radio" name="q11" value="2"> Always</label>
-        </div>
+                    <div class="question">
+                        <p>10. Do you struggle with trusting others, feeling paranoid or suspicious?</p>
+                        <div class="radio-group">
+                            <label class="radio-option">
+                                <input type="radio" name="q10" value="0"> Never
+                            </label>
+                            <label class="radio-option">
+                                <input type="radio" name="q10" value="1"> Often
+                            </label>
+                            <label class="radio-option">
+                                <input type="radio" name="q10" value="2"> Always
+                            </label>
+                        </div>
+                    </div>
 
-        <div class="question">
-            <p>12. Do you struggle with intense feelings of guilt or shame over your actions?</p>
-            <label><input type="radio" name="q12" value="0"> Never</label>
-            <label><input type="radio" name="q12" value="1"> Often</label>
-            <label><input type="radio" name="q12" value="2"> Always</label>
-        </div>
-        <br>
-        <button type="button" onclick="calculateRisk()" class ="btn-cta">Check Symptoms</button>
-    </form>
+                    <div class="question">
+                        <p>11. Do you frequently feel misunderstood or like no one cares about you?</p>
+                        <div class="radio-group">
+                            <label class="radio-option">
+                                <input type="radio" name="q11" value="0"> Never
+                            </label>
+                            <label class="radio-option">
+                                <input type="radio" name="q11" value="1"> Often
+                            </label>
+                            <label class="radio-option">
+                                <input type="radio" name="q11" value="2"> Always
+                            </label>
+                        </div>
+                    </div>
 
-    <div id="result"></div>
-    
+                    <div class="question">
+                        <p>12. Do you struggle with intense feelings of guilt or shame over your actions?</p>
+                        <div class="radio-group">
+                            <label class="radio-option">
+                                <input type="radio" name="q12" value="0"> Never
+                            </label>
+                            <label class="radio-option">
+                                <input type="radio" name="q12" value="1"> Often
+                            </label>
+                            <label class="radio-option">
+                                <input type="radio" name="q12" value="2"> Always
+                            </label>
+                        </div>
+                    </div>
+
+                    <button type="button" onclick="calculateRisk()" class="btn-cta">Check Symptoms</button>
+                </form>
+            </div>
+
+            <div class="results-container">
+                <div id="result" class="hidden">
+                    <div class="result-header">
+                        <div class="result-icon" id="resultIcon" style="background-color: var(--primary);">✓</div>
+                        <div>
+                            <div class="result-title" id="resultTitle">Assessment Result</div>
+                            <div class="result-score" id="resultScore">Score: 0/24</div>
+                        </div>
+                    </div>
+                    
+                    <div class="progress-container">
+                        <div class="progress-label">
+                            <span>BPD Symptoms</span>
+                            <span id="progressPercentage">0%</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" id="progressFill" style="width: 0%"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="result-message" id="resultMessage">
+                        Complete the assessment to see your results.
+                    </div>
+                </div>
+
+                <div id="scores-container" class="hidden">
+                    <h3 style="margin-bottom: 15px; color: var(--dark);">Your Previous Scores</h3>
+                    <div style="background: white; border-radius: 10px; padding: 20px; box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);">
+                        <table class="scores-table">
+                            <thead>
+                                <tr>
+                                    <th>Test</th>
+                                    <th>Score</th>
+                                </tr>
+                            </thead>
+                            <tbody id="scores-table-body">
+                                <!-- Scores will be inserted here -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <script>
-        function calculateRisk() {
+        async function submitTestScore(userId, formId, score) {
+            const scriptUrl = 'https://script.google.com/macros/s/AKfycbxjJyUrH34KICTfS_GmjMEnuqAd7HcT_U3aP2mJPcqLgtDLnWoB5BJZbKwSNedEvExhHw/exec';
+
+            try {
+                const response = await fetch(scriptUrl, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        userId: userId,
+                        formId: formId,
+                        score: score
+                    })
+                });
+
+                const result = await response.json();
+                if (!result.success) {
+                    console.error('Failed to save score:', result.message);
+                    return false;
+                }
+                return true;
+            } catch (error) {
+                console.error('Error saving score:', error);
+                return false;
+            }
+        }
+
+        async function calculateRisk() {
             let totalScore = 0;
+            let allAnswered = true;
+            
+            // Calculate score and check if all questions are answered
             for (let i = 1; i <= 12; i++) {
                 let selected = document.querySelector(`input[name="q${i}"]:checked`);
                 if (selected) {
                     totalScore += parseInt(selected.value);
+                } else {
+                    allAnswered = false;
+                    break;
                 }
             }
 
-            let resultText = "<h3>Assessment Result:</h3>";
-            if (totalScore < 6) {
-                resultText += "<p>No significant symptoms of Borderline Personality Disorder detected.</p>";
-            } else if (totalScore < 14) {
-                resultText += "<p>Mild symptoms detected. Keep monitoring.</p>";
-            } else {
-                resultText += "<p>High likelihood of Borderline Personality Disorder. Please consult a doctor for further evaluation.</p>";
+            if (!allAnswered) {
+                document.getElementById("result").classList.remove("hidden");
+                document.getElementById("resultIcon").style.backgroundColor = "var(--warning)";
+                document.getElementById("resultIcon").textContent = "!";
+                document.getElementById("resultTitle").textContent = "Incomplete Assessment";
+                document.getElementById("resultScore").textContent = "";
+                document.getElementById("resultMessage").textContent = "Please answer all questions before submitting.";
+                document.getElementById("progressFill").style.width = "0%";
+                document.getElementById("progressPercentage").textContent = "0%";
+                return;
             }
 
-            document.getElementById("result").innerHTML = resultText;
+            // Calculate percentage (max score is 24)
+            const percentage = Math.round((totalScore / 24) * 100);
+
+            // Display results
+            document.getElementById("result").classList.remove("hidden");
+            document.getElementById("resultScore").textContent = `Score: ${totalScore}/24`;
+            document.getElementById("progressFill").style.width = `${percentage}%`;
+            document.getElementById("progressPercentage").textContent = `${percentage}%`;
+            
+            let resultTitle, resultMessage, iconColor;
+            if (totalScore < 6) {
+                resultTitle = "Low BPD Symptoms";
+                resultMessage = "Your responses suggest minimal symptoms of Borderline Personality Disorder. This is not a diagnosis - consult a professional if you have concerns.";
+                iconColor = "var(--success)";
+            } else if (totalScore < 14) {
+                resultTitle = "Moderate BPD Symptoms";
+                resultMessage = "Your responses indicate some symptoms associated with BPD. Consider discussing these results with a mental health professional for proper evaluation.";
+                iconColor = "var(--primary)";
+            } else {
+                resultTitle = "High BPD Symptoms";
+                resultMessage = "Your responses suggest significant symptoms associated with Borderline Personality Disorder. We strongly recommend consulting with a mental health professional for a comprehensive evaluation. If you're in crisis, please contact emergency services or a crisis hotline.";
+                iconColor = "var(--warning)";
+            }
+            
+            document.getElementById("resultTitle").textContent = resultTitle;
+            document.getElementById("resultMessage").textContent = resultMessage;
+            document.getElementById("resultIcon").style.backgroundColor = iconColor;
+            document.getElementById("resultIcon").textContent = totalScore < 14 ? "✓" : "!";
+
+            // Store the score - replace with actual user ID
+            const userId = "user_" + Math.floor(Math.random() * 10000); // Temporary random user ID
+            const success = await submitTestScore(userId, 'BPDForm', totalScore);
+
+            if (success) {
+                // Update scores display
+                await displayScores();
+            }
         }
-        
+
+        // Function to get all scores
+        async function getAllScores() {
+            const scriptUrl = 'https://script.google.com/macros/s/AKfycbwMX6Z-JDCqphjpi5eZDHXBeaivVJcyiVlREudutqSMxm7KRWacYh9G_qlcfHlE7rYDRw/exec';
+
+            try {
+                const response = await fetch(scriptUrl);
+                const data = await response.json();
+                return data;
+            } catch (error) {
+                console.error('Error fetching scores:', error);
+                return null;
+            }
+        }
+
+        // Display scores in a table
+        async function displayScores() {
+            const scoresData = await getAllScores();
+            if (!scoresData) return;
+
+            // Find current user's scores (in a real app, you would filter by actual user ID)
+            const currentUserScores = scoresData.rows.find(row => row[0].includes("user_"));
+            if (!currentUserScores) return;
+
+            const tbody = document.getElementById("scores-table-body");
+            tbody.innerHTML = "";
+
+            // Create table rows for each test with a score
+            scoresData.headers.forEach((header, index) => {
+                if (index > 0 && currentUserScores[index]) { // Skip UserID column and empty scores
+                    const tr = document.createElement("tr");
+                    
+                    const tdTest = document.createElement("td");
+                    tdTest.textContent = header.replace("Form", " Test");
+                    
+                    const tdScore = document.createElement("td");
+                    tdScore.textContent = currentUserScores[index];
+                    
+                    tr.appendChild(tdTest);
+                    tr.appendChild(tdScore);
+                    tbody.appendChild(tr);
+                }
+            });
+
+            document.getElementById("scores-container").classList.remove("hidden");
+        }
     </script>
 </body>
 </html>
