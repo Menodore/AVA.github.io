@@ -4,15 +4,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ADHD Symptom Checker | AVA</title>
+    <title>Postpartum Depression Symptom Checker | AVA</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary: #4361ee;
-            --primary-light: #4895ef;
-            --secondary: #3a0ca3;
+            --primary: #ff70a6;
+            --primary-light: #ff9770;
+            --secondary: #ff5a5f;
             --dark: #1a1a2e;
             --light: #f8f9fa;
             --success: #70e000;
@@ -31,7 +31,7 @@
             font-family: 'Poppins', sans-serif;
             line-height: 1.6;
             color: var(--dark);
-            background-color: #f0f8ff;
+            background-color: #fff0f5;
         }
 
         .container {
@@ -109,7 +109,7 @@
             align-self: flex-start;
         }
 
-        #ADHDForm {
+        #PPDForm {
             display: flex;
             flex-direction: column;
             gap: 20px;
@@ -190,7 +190,7 @@
         .btn-cta:hover {
             background-color: var(--secondary);
             transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(58, 12, 163, 0.3);
+            box-shadow: 0 5px 15px rgba(255, 90, 95, 0.3);
         }
 
         #result {
@@ -290,7 +290,7 @@
         }
 
         .scores-table tr:hover {
-            background-color: #e0f0ff;
+            background-color: #ffe0e8;
         }
 
         .hidden {
@@ -298,7 +298,7 @@
         }
 
         .support-alert {
-            background-color: #e6f0ff;
+            background-color: #ffe5ec;
             border-left: 4px solid var(--primary);
             padding: 15px;
             margin-bottom: 20px;
@@ -339,8 +339,8 @@
 
     <section class="hero">
         <div class="container">
-            <h1>ADHD Symptom Checker</h1>
-            <p>Assess potential ADHD symptoms in adults and find support resources</p>
+            <h1>Postpartum Depression Symptom Checker</h1>
+            <p>Assess potential symptoms of postpartum depression and find support resources</p>
         </div>
     </section>
 
@@ -348,11 +348,11 @@
         <div class="content-wrapper">
             <div class="form-container">
                 <div class="support-alert">
-                    <strong>Need help?</strong> If you're struggling with ADHD symptoms, contact <a href="https://chadd.org/" target="_blank">CHADD</a> (Children and Adults with Attention-Deficit/Hyperactivity Disorder) or <a href="https://www.nami.org/help" target="_blank">NAMI Helpline</a> at 1-800-950-NAMI (6264) for support.
+                    <strong>Need help?</strong> If you're experiencing postpartum depression symptoms, contact <a href="https://www.postpartum.net/" target="_blank">Postpartum Support International</a> at 1-800-944-4773 or <a href="https://www.nami.org/help" target="_blank">NAMI Helpline</a> at 1-800-950-NAMI (6264) for confidential support.
                 </div>
-                <form id="ADHDForm">
+                <form id="PPDForm">
                     <div class="question">
-                        <p>1. Do you often struggle to focus on tasks, especially those that are repetitive or boring?</p>
+                        <p>1. Do you feel sad, hopeless, or overwhelmed most of the day?</p>
                         <div class="radio-group">
                             <label class="radio-option">
                                 <input type="radio" name="q1" value="0" required> Never
@@ -367,7 +367,7 @@
                     </div>
 
                     <div class="question">
-                        <p>2. Do you frequently misplace items like keys, phone, or wallet?</p>
+                        <p>2. Have you lost interest or pleasure in activities you used to enjoy?</p>
                         <div class="radio-group">
                             <label class="radio-option">
                                 <input type="radio" name="q2" value="0"> Never
@@ -382,7 +382,7 @@
                     </div>
 
                     <div class="question">
-                        <p>3. Do you struggle with time management, often running late or underestimating how long tasks will take?</p>
+                        <p>3. Do you have trouble bonding with your baby?</p>
                         <div class="radio-group">
                             <label class="radio-option">
                                 <input type="radio" name="q3" value="0"> Never
@@ -397,7 +397,7 @@
                     </div>
 
                     <div class="question">
-                        <p>4. Do you frequently interrupt others or have trouble waiting your turn in conversations?</p>
+                        <p>4. Do you feel excessively anxious about your baby's health or safety?</p>
                         <div class="radio-group">
                             <label class="radio-option">
                                 <input type="radio" name="q4" value="0"> Never
@@ -412,7 +412,7 @@
                     </div>
 
                     <div class="question">
-                        <p>5. Do you often start projects enthusiastically but struggle to finish them?</p>
+                        <p>5. Do you have trouble sleeping (even when your baby is sleeping) or sleep too much?</p>
                         <div class="radio-group">
                             <label class="radio-option">
                                 <input type="radio" name="q5" value="0"> Never
@@ -427,7 +427,7 @@
                     </div>
 
                     <div class="question">
-                        <p>6. Do you feel restless or have difficulty sitting still for long periods?</p>
+                        <p>6. Do you have changes in appetite (eating much more or much less than usual)?</p>
                         <div class="radio-group">
                             <label class="radio-option">
                                 <input type="radio" name="q6" value="0"> Never
@@ -442,7 +442,7 @@
                     </div>
 
                     <div class="question">
-                        <p>7. Do you often procrastinate on tasks until the last minute, even when they're important?</p>
+                        <p>7. Do you feel unusually irritable or angry?</p>
                         <div class="radio-group">
                             <label class="radio-option">
                                 <input type="radio" name="q7" value="0"> Never
@@ -457,7 +457,7 @@
                     </div>
 
                     <div class="question">
-                        <p>8. Do you frequently forget appointments or commitments?</p>
+                        <p>8. Do you feel exhausted or have no energy, even after resting?</p>
                         <div class="radio-group">
                             <label class="radio-option">
                                 <input type="radio" name="q8" value="0"> Never
@@ -472,7 +472,7 @@
                     </div>
 
                     <div class="question">
-                        <p>9. Do you struggle with organization, keeping your living or work spaces messy despite trying to tidy up?</p>
+                        <p>9. Do you feel worthless, guilty, or like you're failing as a mother?</p>
                         <div class="radio-group">
                             <label class="radio-option">
                                 <input type="radio" name="q9" value="0"> Never
@@ -487,7 +487,7 @@
                     </div>
 
                     <div class="question">
-                        <p>10. Do you often feel overwhelmed when starting tasks that require planning?</p>
+                        <p>10. Do you have trouble concentrating, making decisions, or remembering things?</p>
                         <div class="radio-group">
                             <label class="radio-option">
                                 <input type="radio" name="q10" value="0"> Never
@@ -502,7 +502,7 @@
                     </div>
 
                     <div class="question">
-                        <p>11. Do you frequently make careless mistakes in work or other activities?</p>
+                        <p>11. Have you had thoughts about harming yourself or your baby?</p>
                         <div class="radio-group">
                             <label class="radio-option">
                                 <input type="radio" name="q11" value="0"> Never
@@ -517,7 +517,7 @@
                     </div>
 
                     <div class="question">
-                        <p>12. Do you find it difficult to follow through on instructions or complete tasks?</p>
+                        <p>12. Do you feel like you would be better off dead or have thoughts of suicide?</p>
                         <div class="radio-group">
                             <label class="radio-option">
                                 <input type="radio" name="q12" value="0"> Never
@@ -547,7 +547,7 @@
                     
                     <div class="progress-container">
                         <div class="progress-label">
-                            <span>ADHD Symptoms</span>
+                            <span>PPD Symptoms</span>
                             <span id="progressPercentage">0%</span>
                         </div>
                         <div class="progress-bar">
@@ -647,16 +647,16 @@
             
             let resultTitle, resultMessage, iconColor;
             if (totalScore < 6) {
-                resultTitle = "Low ADHD Symptoms";
-                resultMessage = "Your responses suggest minimal ADHD symptoms. If you have concerns about your focus or behavior, consider discussing them with a healthcare provider.";
+                resultTitle = "Low PPD Symptoms";
+                resultMessage = "Your responses suggest minimal postpartum depression symptoms. If you have concerns about your mood after childbirth, consider discussing them with your healthcare provider.";
                 iconColor = "var(--success)";
             } else if (totalScore < 14) {
-                resultTitle = "Moderate ADHD Symptoms";
-                resultMessage = "Your responses indicate some ADHD symptoms that may warrant attention. Consider reaching out to <a href='https://chadd.org/' target='_blank'>CHADD</a> or a mental health professional for evaluation and support.";
+                resultTitle = "Moderate PPD Symptoms";
+                resultMessage = "Your responses indicate some postpartum depression symptoms that may warrant attention. Consider reaching out to <a href='https://www.postpartum.net/' target='_blank'>Postpartum Support International</a> at 1-800-944-4773 or your healthcare provider for evaluation and support.";
                 iconColor = "var(--primary)";
             } else {
-                resultTitle = "High ADHD Symptoms";
-                resultMessage = "Your responses suggest significant ADHD symptoms. We recommend seeking professional evaluation. Contact <a href='https://chadd.org/' target='_blank'>CHADD</a> or the <a href='https://www.nami.org/help' target='_blank'>NAMI Helpline</a> at 1-800-950-NAMI (6264) for support and resources.";
+                resultTitle = "High PPD Symptoms";
+                resultMessage = "Your responses suggest significant postpartum depression symptoms. We strongly recommend seeking professional help immediately. Contact <a href='https://www.postpartum.net/' target='_blank'>Postpartum Support International</a> at 1-800-944-4773 or the <a href='https://www.nami.org/help' target='_blank'>NAMI Helpline</a> at 1-800-950-NAMI (6264) for support and resources.";
                 iconColor = "var(--warning)";
             }
             
@@ -667,7 +667,7 @@
 
             // Store the score - replace with actual user ID
             const userId = "user_" + Math.floor(Math.random() * 10000); // Temporary random user ID
-            const success = await submitTestScore(userId, 'ADHDForm', totalScore);
+            const success = await submitTestScore(userId, 'PPDForm', totalScore);
 
             if (success) {
                 // Update scores display
