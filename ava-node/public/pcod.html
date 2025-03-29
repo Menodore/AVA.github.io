@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PCOS & PCOD Support | AVA</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --peach-light: #FFDAC1;
+            --peach-medium: #FFB7B2;
+            --peach-dark: #FF9AA2;
+            --purple-light: #E2C3F0;
+            --purple-medium: #C7A0D4;
+            --purple-dark: #9D65C9;
+            --pink-light: #FFC8DD;
+            --pink-medium: #FFAFCC;
+            --pink-dark: #FF85A1;
+            --text-dark: #5A3D5C;
+            --text-light: #FFF9FB;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #FFF9FB;
+            color: var(--text-dark);
+            line-height: 1.6;
+        }
+        
+        header {
+            background: linear-gradient(135deg, var(--purple-medium), var(--pink-medium));
+            padding: 1rem 0;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        
+        .logo {
+            height: 50px;
+            width: auto;
+        }
+        
+        nav h1 {
+            color: white;
+            font-size: 2rem;
+            font-weight: 600;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
+        }
+        
+        .hero {
+            background: linear-gradient(135deg, var(--peach-medium), var(--pink-medium));
+            padding: 3rem 0;
+            text-align: center;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" fill="white" opacity="0.05"><circle cx="25" cy="25" r="5"/><circle cx="75" cy="25" r="5"/><circle cx="50" cy="50" r="5"/><circle cx="25" cy="75" r="5"/><circle cx="75" cy="75" r="5"/></svg>');
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+        
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .btn-cta {
+            background: linear-gradient(135deg, var(--pink-medium), var(--purple-medium));
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            font-size: 1.1rem;
+            border-radius: 50px;
+            cursor: pointer;
+            display: inline-block;
+            margin-top: 1rem;
+            transition: all 0.3s ease;
+            font-weight: 600;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+        
+        .btn-cta:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 16px rgba(0,0,0,0.2);
+            background: linear-gradient(135deg, var(--pink-dark), var(--purple-dark));
+        }
+        
+        .main-content {
+            padding: 3rem 0;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .section-title {
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            color: var(--purple-dark);
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+            padding: 0 1rem;
+        }
+        
+        .feature-card {
+            background-color: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.12);
+        }
+        
+        .feature-card::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 5px;
+            height: 100%;
+            background: linear-gradient(to bottom, var(--pink-medium), var(--purple-medium));
+        }
+        
+        .feature-card a {
+            display: block;
+            padding: 1.5rem;
+            text-decoration: none;
+            color: var(--text-dark);
+            height: 100%;
+        }
+        
+        .feature-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 0.8rem;
+            color: var(--purple-dark);
+            display: flex;
+            align-items: center;
+        }
+        
+        .feature-card h3 i {
+            margin-right: 0.8rem;
+            color: var(--pink-medium);
+        }
+        
+        .feature-card p {
+            color: var(--text-dark);
+            opacity: 0.8;
+            font-size: 0.95rem;
+        }
+        
+        .symptom-checker {
+            background-color: white;
+            border-radius: 15px;
+            padding: 2rem;
+            margin: 2rem auto;
+            max-width: 800px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+        }
+        
+        .symptom-checker h3 {
+            color: var(--purple-dark);
+            margin-bottom: 1.5rem;
+            font-size: 1.5rem;
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: var(--text-dark);
+        }
+        
+        .form-group input, 
+        .form-group select {
+            width: 100%;
+            padding: 0.8rem;
+            border: 2px solid var(--peach-medium);
+            border-radius: 10px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+        
+        .form-group input:focus, 
+        .form-group select:focus {
+            outline: none;
+            border-color: var(--pink-medium);
+            box-shadow: 0 0 0 3px rgba(255, 175, 204, 0.3);
+        }
+        
+        footer {
+            background: linear-gradient(135deg, var(--purple-medium), var(--pink-medium));
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: 2rem;
+        }
+        
+        .footer-content {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .section-title {
+                font-size: 1.5rem;
+            }
+            
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <img src="logo.png" alt="Ava Logo" class="logo">
+            <nav>
+                <h1>AVA</h1>
+            </nav>
+        </div>
+    </header>
+    
+    <section class="hero">
+        <div class="hero-content">
+            <h1>PCOS & PCOD Support Hub</h1>
+            <p>Understand your symptoms, track your health, and get personalized guidance</p>
+            <a href="#symptom-checker" class="btn-cta">Check Your Symptoms</a>
+        </div>
+    </section>
+    
+    <section class="main-content">
+        <h2 class="section-title">How We Can Help</h2>
+        
+        <div class="features-grid">
+            <div class="feature-card">
+                <a href="#symptom-checker">
+                    <h3><i class="fas fa-clipboard-check"></i> Symptom Assessment</h3>
+                    <p>Take our quiz to understand your PCOS/PCOD risk factors and symptoms.</p>
+                </a>
+            </div>
+            
+            <div class="feature-card">
+                <a href="#">
+                    <h3><i class="fas fa-utensils"></i> Nutrition Guide</h3>
+                    <p>Discover PCOS-friendly diets and recipes to manage symptoms.</p>
+                </a>
+            </div>
+            
+            <div class="feature-card">
+                <a href="#">
+                    <h3><i class="fas fa-heartbeat"></i> Hormone Tracking</h3>
+                    <p>Monitor your cycle, weight, and other key health markers.</p>
+                </a>
+            </div>
+            
+            <div class="feature-card">
+                <a href="#">
+                    <h3><i class="fas fa-hands-helping"></i> Expert Advice</h3>
+                    <p>Access articles and tips from gynecologists and nutritionists.</p>
+                </a>
+            </div>
+            
+            <div class="feature-card">
+                <a href="#">
+                    <h3><i class="fas fa-calendar-alt"></i> Period Tracker</h3>
+                    <p>Predict your cycle and log symptoms for better management.</p>
+                </a>
+            </div>
+            
+            <div class="feature-card">
+                <a href="#">
+                    <h3><i class="fas fa-users"></i> Community Support</h3>
+                    <p>Connect with others managing PCOS/PCOD.</p>
+                </a>
+            </div>
+        </div>
+        
+        <div id="symptom-checker" class="symptom-checker">
+            <h3>PCOS/PCOD Symptom Checker</h3>
+            <p>Answer these questions to assess your symptoms and get personalized recommendations.</p>
+            
+            <form id="pcosForm">
+                <div class="form-group">
+                    <label>How often do you experience irregular periods?</label>
+                    <select id="irregular_periods">
+                        <option value="never">Never (regular cycles)</option>
+                        <option value="sometimes">Sometimes (1-2 irregular cycles/year)</option>
+                        <option value="often">Often (3-6 irregular cycles/year)</option>
+                        <option value="always">Always (very unpredictable)</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label>Do you experience excessive hair growth (face, chest, back)?</label>
+                    <select id="hirsutism">
+                        <option value="no">No</option>
+                        <option value="mild">Mild (a few dark hairs)</option>
+                        <option value="moderate">Moderate (noticeable growth)</option>
+                        <option value="severe">Severe (excessive growth)</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label>Have you noticed significant weight gain or difficulty losing weight?</label>
+                    <select id="weight_gain">
+                        <option value="no">No</option>
+                        <option value="some">Some weight gain</option>
+                        <option value="difficulty">Difficulty losing weight</option>
+                        <option value="both">Both weight gain and difficulty losing</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label>Do you experience acne or oily skin?</label>
+                    <select id="acne">
+                        <option value="no">No</option>
+                        <option value="mild">Mild (occasional breakouts)</option>
+                        <option value="moderate">Moderate (regular acne)</option>
+                        <option value="severe">Severe (persistent cystic acne)</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label>Have you been diagnosed with insulin resistance or diabetes?</label>
+                    <select id="insulin_resistance">
+                        <option value="no">No</option>
+                        <option value="prediabetes">Prediabetes/Insulin resistance</option>
+                        <option value="type2">Type 2 Diabetes</option>
+                    </select>
+                </div>
+                
+                <button type="submit" class="btn-cta">Get Your Assessment</button>
+            </form>
+        </div>
+    </section>
+    
+    <footer>
+        <div class="footer-content">
+            <p>© 2025 AVA Women's Health. All rights reserved.</p>
+            <p><small>Disclaimer: This tool does not provide medical diagnosis. Consult a healthcare provider for evaluation.</small></p>
+        </div>
+    </footer>
+
+    <script>
+        document.getElementById("pcosForm").addEventListener("submit", function(event) {
+            event.preventDefault();
+            
+            // Collect form data
+            const formData = {
+                irregular_periods: document.getElementById("irregular_periods").value,
+                hirsutism: document.getElementById("hirsutism").value,
+                weight_gain: document.getElementById("weight_gain").value,
+                acne: document.getElementById("acne").value,
+                insulin_resistance: document.getElementById("insulin_resistance").value
+            };
+            
+            // Simple scoring system (for demo)
+            let score = 0;
+            
+            if (formData.irregular_periods === "often" || formData.irregular_periods === "always") score += 2;
+            if (formData.hirsutism === "moderate" || formData.hirsutism === "severe") score += 2;
+            if (formData.weight_gain === "difficulty" || formData.weight_gain === "both") score += 2;
+            if (formData.acne === "moderate" || formData.acne === "severe") score += 1;
+            if (formData.insulin_resistance !== "no") score += 3;
+            
+            // Generate result
+            let resultMessage = "";
+            if (score >= 6) {
+                resultMessage = "Your symptoms suggest a high likelihood of PCOS/PCOD. We recommend consulting a gynecologist for proper evaluation and management.";
+            } else if (score >= 3) {
+                resultMessage = "You have some symptoms that may indicate PCOS/PCOD. Tracking your symptoms and lifestyle changes may help.";
+            } else {
+                resultMessage = "Your symptoms don't strongly suggest PCOS/PCOD, but irregular periods should always be discussed with a doctor.";
+            }
+            
+            alert("Assessment Result:\n\n" + resultMessage + "\n\nScore: " + score + "/10");
+        });
+    </script>
+</body>
+</html>
