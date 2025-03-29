@@ -56,31 +56,37 @@
             color: var(--text-dark);
             line-height: 1.6;
         }
-        
-        /* Header Styles - Matching land.html */
-        .navbar {
-            display: flex;
-            justify-content: center;
-            padding: var(--space-sm) 0;
-            background-color: var(--bg-alt);
-            box-shadow: var(--shadow-sm);
-            position: sticky;
-            top: 0;
-            z-index: 100;
-        }
-        
-        .logo-nav-container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            width: 100%;
-        }
-        
-        .logo-container {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
+
+    .navbar {
+        padding: var(--space-sm) 0;
+        background-color: var(--bg-alt);
+        box-shadow: var(--shadow-sm);
+        position: sticky;
+        top: 0;
+        z-index: 100;
+    }
+
+    .logo-nav-container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+    }
+
+    .logo-container {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .nav-links {
+        display: flex;
+        list-style: none;
+        gap: var(--space-md);
+        margin: 0;
+        padding: 0;
+        align-items: center;
+    }
         
         .header-logo {
             height: 40px;
@@ -600,11 +606,10 @@
             margin-right: auto;
         }
         
-        /* Responsive Styles */
         @media (max-width: 768px) {
             .logo-nav-container {
-                flex-direction: column;
-                align-items: stretch;
+                flex-direction: row;
+                align-items: center;
             }
         
             .nav-links {
@@ -614,7 +619,7 @@
                 width: 100%;
                 background-color: var(--bg-alt);
                 flex-direction: column;
-                align-items: center;
+                align-items: flex-start;
                 padding: var(--space-md);
                 box-shadow: var(--shadow-md);
                 transform: translateY(-150%);
@@ -627,11 +632,7 @@
             
             .mobile-menu-btn {
                 display: block;
-                position: absolute;
-                right: var(--space-md);
-                top: var(--space-sm);
             }
-            
             .mobile-menu-btn.open span:nth-child(1) {
                 transform: rotate(45deg) translate(5px, 5px);
             }
@@ -678,19 +679,105 @@
                 max-width: 100%;
             }
         }
+        css
+Copy
+/* Header Styles */
+.navbar {
+    display: flex;
+    padding: var(--space-sm) 0;
+    background-color: var(--bg-alt);
+    box-shadow: var(--shadow-sm);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 var(--space-md);
+}
+
+.logo-nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+.logo-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.header-logo {
+    height: 40px;
+    width: auto;
+}
+
+.logo {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: var(--primary);
+}
+
+.nav-links {
+    display: flex;
+    list-style: none;
+    gap: var(--space-md);
+    margin: 0;
+    padding: 0;
+    align-items: center;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: var(--text);
+    font-weight: 500;
+    transition: var(--transition);
+}
+
+.nav-links a:hover {
+    color: var(--primary);
+}
+
+/* Login/Logout Button */
+.login-btn {
+    background-color: var(--primary);
+    color: white !important;
+    padding: 0.5rem 1.25rem;
+    border-radius: 50px;
+    transition: var(--transition);
+    border: none;
+    cursor: pointer;
+    font-size: inherit;
+    font-family: inherit;
+}
+
+.login-btn:hover {
+    background-color: var(--primary-dark);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-sm);
+}
     </style>
 </head>
 <body>
     <header class="navbar">
         <div class="container">
             <div class="logo-nav-container">
+                <!-- Logo on the left -->
                 <div class="logo-container">
                     <img src="logo.png" alt="Ava Logo" class="header-logo">
                     <div class="logo">Ava</div>
                 </div>
+    
+                <!-- Navigation menu on the right -->
                 <nav>
                     <ul class="nav-links">
-                        <li><a href="#home">Home</a></li>
+                        <li><a href="land.html">Home</a></li>
+                        
                         <li class="dropdown">
                             <a href="#" id="featuresLink">Features</a>
                             <div class="dropdown-content">
@@ -717,6 +804,7 @@
                                 <a href="https://menodore.github.io/AVA.github.io/blogs.html">Curated Blogs</a>
                             </div>
                         </li>
+                        
                         <li class="dropdown">
                             <a href="#" id="aboutLink">About</a>
                             <div class="dropdown-content">
@@ -724,11 +812,20 @@
                                 <a href="index.html#mission">Mission</a>
                             </div>
                         </li>
+                        
                         <li><a href="index.html#contact">Contact</a></li>
-                        <li><a href="logout.php" class="login-btn">Logout</a></li>
+                        
+                        <!-- Logout Button -->
+                        <li>
+                            <button type="button" onclick="window.location.href='logout.php'" class="login-btn">
+                                Logout
+                            </button>
+                        </li>
                     </ul>
                 </nav>
             </div>
+    
+            <!-- Mobile menu button -->
             <button class="mobile-menu-btn" aria-label="Menu">
                 <span></span>
                 <span></span>
