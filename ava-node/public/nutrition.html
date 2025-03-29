@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PCOS Nutrition Guide | AVA</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Paste the same :root and base styles from previous code */
+        :root { /* ... */ }
+        * { /* ... */ }
+        body { /* ... */ }
+        header { /* ... */ }
+        .hero { /* ... */ }
+        /* Continue with all shared styles */
+        
+        .recipe-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            transition: transform 0.3s ease;
+            margin-bottom: 2rem;
+        }
+        
+        .recipe-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .recipe-img {
+            height: 200px;
+            background-size: cover;
+            background-position: center;
+        }
+        
+        .recipe-content {
+            padding: 1.5rem;
+        }
+        
+        .badge {
+            display: inline-block;
+            padding: 0.3rem 0.8rem;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            margin-right: 0.5rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .low-gi { background: var(--peach-light); color: var(--text-dark); }
+        .anti-inflammatory { background: var(--purple-light); color: white; }
+        .high-fiber { background: var(--pink-light); color: var(--text-dark); }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <img src="logo.png" alt="Ava Logo" class="logo">
+            <nav>
+                <h1>AVA</h1>
+            </nav>
+        </div>
+    </header>
+    
+    <section class="hero">
+        <div class="hero-content">
+            <h1>PCOS-Friendly Nutrition Guide</h1>
+            <p>Discover foods that help balance hormones and manage symptoms</p>
+        </div>
+    </section>
+    
+    <section class="main-content">
+        <div class="container">
+            <h2 class="section-title">Key Dietary Principles</h2>
+            
+            <div class="features-grid">
+                <div class="feature-card">
+                    <h3><i class="fas fa-seedling"></i> Low Glycemic Index</h3>
+                    <p>Choose complex carbs that don't spike blood sugar</p>
+                </div>
+                <div class="feature-card">
+                    <h3><i class="fas fa-heart"></i> Anti-Inflammatory</h3>
+                    <p>Foods that reduce inflammation and insulin resistance</p>
+                </div>
+                <div class="feature-card">
+                    <h3><i class="fas fa-leaf"></i> High Fiber</h3>
+                    <p>Supports gut health and hormone elimination</p>
+                </div>
+            </div>
+            
+            <h2 class="section-title">Featured Recipes</h2>
+            
+            <div class="recipe-card">
+                <div class="recipe-img" style="background-image: url('https://images.unsplash.com/photo-1546069901-ba9599a7e63c')"></div>
+                <div class="recipe-content">
+                    <span class="badge low-gi">Low GI</span>
+                    <span class="badge high-fiber">High Fiber</span>
+                    <h3>Quinoa & Roasted Veggie Bowl</h3>
+                    <p>Protein-packed with 15g fiber per serving. Helps stabilize blood sugar.</p>
+                    <a href="#" class="btn-cta">View Recipe</a>
+                </div>
+            </div>
+            
+            <div class="recipe-card">
+                <div class="recipe-img" style="background-image: url('https://images.unsplash.com/photo-1512621776951-a57141f2eefd')"></div>
+                <div class="recipe-content">
+                    <span class="badge anti-inflammatory">Anti-Inflammatory</span>
+                    <h3>Turmeric Salmon with Greens</h3>
+                    <p>Rich in omega-3s to reduce inflammation and support hormone health.</p>
+                    <a href="#" class="btn-cta">View Recipe</a>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <footer>
+        <div class="footer-content">
+            <p>© 2025 AVA Mental Wellness. All rights reserved.</p>
+            <div class="footer-links">
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms of Service</a>
+                <a href="#">Contact Us</a>
+                <a href="#">About AVA</a>
+            </div>
+            <div class="social-icons">
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-facebook"></i></a>
+                <a href="#"><i class="fab fa-pinterest"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+            </div>
+            <p><small>Disclaimer: These assessments are not diagnostic tools. Please consult a healthcare professional for clinical evaluation.</small></p>
+        </div>
+    </footer>
+</body>
+</html>
