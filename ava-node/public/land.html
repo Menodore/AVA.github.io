@@ -6,7 +6,6 @@
     <title>Ava - Your Wellness Companion</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="land.css">
-    <!-- Removed all style elements -->
 </head>
 <body>
     <header class="navbar">
@@ -181,10 +180,8 @@
             }
         });
 
-        // Update copyright year
         document.getElementById('currentYear').textContent = new Date().getFullYear();
 
-        // Mobile submenu toggle
         document.querySelectorAll('.dropdown-submenu > a').forEach(anchor => {
             anchor.addEventListener('click', function(e) {
                 if(window.innerWidth <= 768) {
