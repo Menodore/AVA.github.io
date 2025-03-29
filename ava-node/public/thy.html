@@ -3,9 +3,466 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Thyroid Symptom Checker</title>
-    <link rel="stylesheet" href="home.css">
-    
+    <title>Thyroid Wellness Check | AVA</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --peach-light: #FFDAC1;
+            --peach-medium: #FFB7B2;
+            --peach-dark: #FF9AA2;
+            --purple-light: #E2C3F0;
+            --purple-medium: #C7A0D4;
+            --purple-dark: #9D65C9;
+            --pink-light: #FFC8DD;
+            --pink-medium: #FFAFCC;
+            --pink-dark: #FF85A1;
+            --text-dark: #5A3D5C;
+            --text-light: #FFF9FB;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #FFF9FB;
+            color: var(--text-dark);
+            line-height: 1.6;
+        }
+        
+        header {
+            background: linear-gradient(135deg, var(--purple-medium), var(--pink-medium));
+            padding: 1rem 0;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        
+        .logo {
+            height: 50px;
+            width: auto;
+        }
+        
+        nav h1 {
+            color: white;
+            font-size: 2rem;
+            font-weight: 600;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
+        }
+        
+        .hero {
+            background: linear-gradient(135deg, var(--peach-medium), var(--pink-medium));
+            padding: 3rem 0;
+            text-align: center;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" fill="white" opacity="0.05"><circle cx="25" cy="25" r="5"/><circle cx="75" cy="25" r="5"/><circle cx="50" cy="50" r="5"/><circle cx="25" cy="75" r="5"/><circle cx="75" cy="75" r="5"/></svg>');
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+        
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .progress-container {
+            width: 100%;
+            max-width: 800px;
+            margin: 2rem auto;
+            background-color: var(--peach-light);
+            border-radius: 20px;
+            height: 15px;
+            overflow: hidden;
+        }
+        
+        .progress-bar {
+            height: 100%;
+            background: linear-gradient(90deg, var(--pink-medium), var(--purple-medium));
+            width: 0%;
+            transition: width 0.5s ease;
+            border-radius: 20px;
+        }
+        
+        #thyroidForm {
+            background-color: white;
+            border-radius: 20px;
+            padding: 2rem;
+            margin: 2rem auto;
+            max-width: 800px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        #thyroidForm::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 8px;
+            height: 100%;
+            background: linear-gradient(to bottom, var(--pink-medium), var(--purple-medium));
+        }
+        
+        .form-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 2rem;
+        }
+        
+        .form-header i {
+            font-size: 2rem;
+            color: var(--purple-medium);
+            margin-right: 1rem;
+        }
+        
+        .form-header h2 {
+            color: var(--text-dark);
+            font-size: 1.8rem;
+        }
+        
+        .question {
+            margin-bottom: 1.5rem;
+            padding: 1.5rem;
+            border-radius: 15px;
+            background-color: var(--peach-light);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .question:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .question::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background-color: var(--pink-medium);
+        }
+        
+        .question p {
+            font-weight: 600;
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+            color: var(--text-dark);
+        }
+        
+        .options {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        
+        .option {
+            position: relative;
+            flex: 1 1 150px;
+            min-width: 120px;
+        }
+        
+        .option input {
+            position: absolute;
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+        
+        .option label {
+            display: block;
+            padding: 0.8rem 1rem;
+            background-color: white;
+            border: 2px solid var(--peach-medium);
+            border-radius: 10px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 500;
+            color: var(--text-dark);
+        }
+        
+        .option label:hover {
+            background-color: var(--peach-light);
+        }
+        
+        .option input:checked + label {
+            background-color: var(--pink-medium);
+            color: white;
+            border-color: var(--pink-dark);
+            box-shadow: 0 3px 8px rgba(0,0,0,0.1);
+        }
+        
+        .btn-cta {
+            background: linear-gradient(135deg, var(--pink-medium), var(--purple-medium));
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            font-size: 1.1rem;
+            border-radius: 50px;
+            cursor: pointer;
+            display: block;
+            margin: 2rem auto 0;
+            transition: all 0.3s ease;
+            font-weight: 600;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            width: 100%;
+            max-width: 300px;
+        }
+        
+        .btn-cta:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 16px rgba(0,0,0,0.2);
+            background: linear-gradient(135deg, var(--pink-dark), var(--purple-dark));
+        }
+        
+        .btn-cta:active {
+            transform: translateY(1px);
+        }
+        
+        #result {
+            background-color: white;
+            border-radius: 20px;
+            padding: 2rem;
+            margin: 2rem auto;
+            max-width: 800px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .result-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            color: var(--purple-dark);
+        }
+        
+        .result-header i {
+            font-size: 2rem;
+            margin-right: 1rem;
+        }
+        
+        .result-header h3 {
+            font-size: 1.8rem;
+        }
+        
+        .result-content {
+            padding: 1rem;
+            border-radius: 10px;
+            margin-bottom: 1.5rem;
+        }
+        
+        .result-content p {
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+        
+        .next-steps {
+            background-color: var(--peach-light);
+            padding: 1.5rem;
+            border-radius: 15px;
+            margin-top: 1.5rem;
+        }
+        
+        .next-steps h4 {
+            color: var(--purple-dark);
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+        
+        .next-steps ul {
+            list-style-type: none;
+        }
+        
+        .next-steps li {
+            margin-bottom: 0.8rem;
+            position: relative;
+            padding-left: 1.8rem;
+        }
+        
+        .next-steps li::before {
+            content: "•";
+            color: var(--pink-dark);
+            font-size: 1.5rem;
+            position: absolute;
+            left: 0;
+            top: -3px;
+        }
+        
+        .thyroid-info {
+            background-color: var(--purple-light);
+            padding: 2rem;
+            border-radius: 20px;
+            margin: 2rem auto;
+            max-width: 800px;
+        }
+        
+        .thyroid-info h3 {
+            color: var(--text-dark);
+            margin-bottom: 1.5rem;
+            font-size: 1.5rem;
+            text-align: center;
+        }
+        
+        .info-cards {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            justify-content: center;
+        }
+        
+        .info-card {
+            background-color: white;
+            border-radius: 15px;
+            padding: 1.5rem;
+            flex: 1 1 250px;
+            max-width: 300px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: all 0.3s ease;
+        }
+        
+        .info-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+        }
+        
+        .info-card h4 {
+            color: var(--purple-dark);
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+            display: flex;
+            align-items: center;
+        }
+        
+        .info-card h4 i {
+            margin-right: 0.8rem;
+            color: var(--pink-medium);
+        }
+        
+        .info-card p {
+            color: var(--text-dark);
+            font-size: 0.95rem;
+        }
+        
+        footer {
+            background: linear-gradient(135deg, var(--purple-medium), var(--pink-medium));
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: 3rem;
+        }
+        
+        .footer-content {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin: 1.5rem 0;
+        }
+        
+        .footer-links a {
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        .footer-links a:hover {
+            color: var(--peach-light);
+            text-decoration: underline;
+        }
+        
+        .social-icons {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin: 1.5rem 0;
+        }
+        
+        .social-icons a {
+            color: white;
+            font-size: 1.5rem;
+            transition: all 0.3s ease;
+        }
+        
+        .social-icons a:hover {
+            color: var(--peach-light);
+            transform: translateY(-3px);
+        }
+        
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .options {
+                flex-direction: column;
+                gap: 0.8rem;
+            }
+            
+            .option {
+                flex: 1 1 auto;
+            }
+            
+            .info-cards {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .info-card {
+                max-width: 100%;
+            }
+        }
+    </style>
 </head>
 <body>
     <header>
@@ -16,125 +473,508 @@
             </nav>
         </div>
     </header>
-    <section id="hero" class="hero">
+    
+    <section class="hero">
         <div class="hero-content">
-    <h1>Thyroid Symptom Checker</h1>
-    <p>Answer the following questions to check for possible thyroid imbalances.</p>
-    </div>
+            <h1>Thyroid Wellness Check</h1>
+            <p>Take this comprehensive assessment to understand your thyroid health and get personalized insights</p>
+        </div>
     </section>
+    
+    <div class="progress-container">
+        <div class="progress-bar" id="progressBar"></div>
+    </div>
+    
     <form id="thyroidForm">
+        <div class="form-header">
+            <i class="fas fa-heartbeat"></i>
+            <h2>Thyroid Symptom Assessment</h2>
+        </div>
+        
+        <p style="margin-bottom: 2rem; color: var(--text-dark);">Please answer each question honestly based on your experiences over the past 3 months. Your responses will help us evaluate potential thyroid-related concerns.</p>
+        
         <div class="question">
-            <p>1. Unusual weight gain or difficulty losing weight</p>
-            <label><input type="radio" name="q1" value="0"> Never</label>
-            <label><input type="radio" name="q1" value="1"> Often</label>
-            <label><input type="radio" name="q1" value="2"> Always</label>
+            <p>1. Unusual weight gain or difficulty losing weight despite normal eating habits</p>
+            <div class="options">
+                <div class="option">
+                    <input type="radio" name="q1" value="0" id="q1-0">
+                    <label for="q1-0">Never</label>
+                </div>
+                <div class="option">
+                    <input type="radio" name="q1" value="1" id="q1-1">
+                    <label for="q1-1">Sometimes</label>
+                </div>
+                <div class="option">
+                    <input type="radio" name="q1" value="2" id="q1-2">
+                    <label for="q1-2">Often</label>
+                </div>
+                <div class="option">
+                    <input type="radio" name="q1" value="3" id="q1-3">
+                    <label for="q1-3">Always</label>
+                </div>
+            </div>
         </div>
 
         <div class="question">
-            <p>2. Fatigue, loss of energy, or sleeping more than average</p>
-            <label><input type="radio" name="q2" value="0"> Never</label>
-            <label><input type="radio" name="q2" value="1"> Often</label>
-            <label><input type="radio" name="q2" value="2"> Always</label>
+            <p>2. Fatigue, loss of energy, or needing more sleep than usual</p>
+            <div class="options">
+                <div class="option">
+                    <input type="radio" name="q2" value="0" id="q2-0">
+                    <label for="q2-0">Never</label>
+                </div>
+                <div class="option">
+                    <input type="radio" name="q2" value="1" id="q2-1">
+                    <label for="q2-1">Sometimes</label>
+                </div>
+                <div class="option">
+                    <input type="radio" name="q2" value="2" id="q2-2">
+                    <label for="q2-2">Often</label>
+                </div>
+                <div class="option">
+                    <input type="radio" name="q2" value="3" id="q2-3">
+                    <label for="q2-3">Always</label>
+                </div>
+            </div>
         </div>
 
         <div class="question">
-            <p>3. Hair loss, brittle hair, itchy scalp, or loss of eyebrows</p>
-            <label><input type="radio" name="q3" value="0"> Never</label>
-            <label><input type="radio" name="q3" value="1"> Often</label>
-            <label><input type="radio" name="q3" value="2"> Always</label>
+            <p>3. Hair loss, brittle hair, itchy scalp, or thinning eyebrows</p>
+            <div class="options">
+                <div class="option">
+                    <input type="radio" name="q3" value="0" id="q3-0">
+                    <label for="q3-0">Never</label>
+                </div>
+                <div class="option">
+                    <input type="radio" name="q3" value="1" id="q3-1">
+                    <label for="q3-1">Sometimes</label>
+                </div>
+                <div class="option">
+                    <input type="radio" name="q3" value="2" id="q3-2">
+                    <label for="q3-2">Often</label>
+                </div>
+                <div class="option">
+                    <input type="radio" name="q3" value="3" id="q3-3">
+                    <label for="q3-3">Always</label>
+                </div>
+            </div>
         </div>
 
         <div class="question">
-            <p>4. Dry skin and brittle nails</p>
-            <label><input type="radio" name="q4" value="0"> Never</label>
-            <label><input type="radio" name="q4" value="1"> Often</label>
-            <label><input type="radio" name="q4" value="2"> Always</label>
+            <p>4. Dry skin and brittle nails that crack or peel easily</p>
+            <div class="options">
+                <div class="option">
+                    <input type="radio" name="q4" value="0" id="q4-0">
+                    <label for="q4-0">Never</label>
+                </div>
+                <div class="option">
+                    <input type="radio" name="q4" value="1" id="q4-1">
+                    <label for="q4-1">Sometimes</label>
+                </div>
+                <div class="option">
+                    <input type="radio" name="q4" value="2" id="q4-2">
+                    <label for="q4-2">Often</label>
+                </div>
+                <div class="option">
+                    <input type="radio" name="q4" value="3" id="q4-3">
+                    <label for="q4-3">Always</label>
+                </div>
+            </div>
         </div>
 
         <div class="question">
-            <p>5. Difficulty tolerating temperature changes or sensitivity to cold</p>
-            <label><input type="radio" name="q5" value="0"> Never</label>
-            <label><input type="radio" name="q5" value="1"> Often</label>
-            <label><input type="radio" name="q5" value="2"> Always</label>
+            <p>5. Sensitivity to cold temperatures or difficulty warming up</p>
+            <div class="options">
+                <div class="option">
+                    <input type="radio" name="q5" value="0" id="q5-0">
+                    <label for="q5-0">Never</label>
+                </div>
+                <div class="option">
+                    <input type="radio" name="q5" value="1" id="q5-1">
+                    <label for="q5-1">Sometimes</label>
+                </div>
+                <div class="option">
+                    <input type="radio" name="q5" value="2" id="q5-2">
+                    <label for="q5-2">Often</label>
+                </div>
+                <div class="option">
+                    <input type="radio" name="q5" value="3" id="q5-3">
+                    <label for="q5-3">Always</label>
+                </div>
+            </div>
         </div>
 
         <div class="question">
-            <p>6. Feeling forgetful, fuzzy-minded, or absent-minded</p>
-            <label><input type="radio" name="q6" value="0"> Never</label>
-            <label><input type="radio" name="q6" value="1"> Often</label>
-            <label><input type="radio" name="q6" value="2"> Always</label>
+            <p>6. Difficulty concentrating, forgetfulness, or brain fog</p>
+            <div class="options">
+                <div class="option">
+                    <input type="radio" name="q6" value="0" id="q6-0">
+                    <label for="q6-0">Never</label>
+                </div>
+                <div class="option">
+                    <input type="radio" name="q6" value="1" id="q6-1">
+                    <label for="q6-1">Sometimes</label>
+                </div>
+                <div class="option">
+                    <input type="radio" name="q6" value="2" id="q6-2">
+                    <label for="q6-2">Often</label>
+                </div>
+                <div class="option">
+                    <input type="radio" name="q6" value="3" id="q6-3">
+                    <label for="q6-3">Always</label>
+                </div>
+            </div>
         </div>
 
         <div class="question">
-            <p>7. Feeling irritable or having mood swings</p>
-            <label><input type="radio" name="q7" value="0"> Never</label>
-            <label><input type="radio" name="q7" value="1"> Often</label>
-            <label><input type="radio" name="q7" value="2"> Always</label>
+            <p>7. Mood swings, irritability, or unexplained anxiety</p>
+            <div class="options">
+                <div class="option">
+                    <input type="radio" name="q7" value="0" id="q7-0">
+                    <label for="q7-0">Never</label>
+                </div>
+                <div class="option">
+                    <input type="radio" name="q7" value="1" id="q7-1">
+                    <label for="q7-1">Sometimes</label>
+                </div>
+                <div class="option">
+                    <input type="radio" name="q7" value="2" id="q7-2">
+                    <label for="q7-2">Often</label>
+                </div>
+                <div class="option">
+                    <input type="radio" name="q7" value="3" id="q7-3">
+                    <label for="q7-3">Always</label>
+                </div>
+            </div>
         </div>
 
         <div class="question">
-            <p>8. Puffiness in face and extremities</p>
-            <label><input type="radio" name="q8" value="0"> Never</label>
-            <label><input type="radio" name="q8" value="1"> Often</label>
-            <label><input type="radio" name="q8" value="2"> Always</label>
+            <p>8. Puffiness in face, hands, or feet (fluid retention)</p>
+            <div class="options">
+                <div class="option">
+                    <input type="radio" name="q8" value="0" id="q8-0">
+                    <label for="q8-0">Never</label>
+                </div>
+                <div class="option">
+                    <input type="radio" name="q8" value="1" id="q8-1">
+                    <label for="q8-1">Sometimes</label>
+                </div>
+                <div class="option">
+                    <input type="radio" name="q8" value="2" id="q8-2">
+                    <label for="q8-2">Often</label>
+                </div>
+                <div class="option">
+                    <input type="radio" name="q8" value="3" id="q8-3">
+                    <label for="q8-3">Always</label>
+                </div>
+            </div>
         </div>
 
         <div class="question">
-            <p>9. Constipation and other bowel problems</p>
-            <label><input type="radio" name="q9" value="0"> Never</label>
-            <label><input type="radio" name="q9" value="1"> Often</label>
-            <label><input type="radio" name="q9" value="2"> Always</label>
+            <p>9. Constipation, bloating, or other digestive issues</p>
+            <div class="options">
+                <div class="option">
+                    <input type="radio" name="q9" value="0" id="q9-0">
+                    <label for="q9-0">Never</label>
+                </div>
+                <div class="option">
+                    <input type="radio" name="q9" value="1" id="q9-1">
+                    <label for="q9-1">Sometimes</label>
+                </div>
+                <div class="option">
+                    <input type="radio" name="q9" value="2" id="q9-2">
+                    <label for="q9-2">Often</label>
+                </div>
+                <div class="option">
+                    <input type="radio" name="q9" value="3" id="q9-3">
+                    <label for="q9-3">Always</label>
+                </div>
+            </div>
         </div>
 
         <div class="question">
-            <p>10. Numbness or tingling in the hands</p>
-            <label><input type="radio" name="q10" value="0"> Never</label>
-            <label><input type="radio" name="q10" value="1"> Often</label>
-            <label><input type="radio" name="q10" value="2"> Always</label>
+            <p>10. Numbness, tingling, or carpal tunnel-like symptoms in hands</p>
+            <div class="options">
+                <div class="option">
+                    <input type="radio" name="q10" value="0" id="q10-0">
+                    <label for="q10-0">Never</label>
+                </div>
+                <div class="option">
+                    <input type="radio" name="q10" value="1" id="q10-1">
+                    <label for="q10-1">Sometimes</label>
+                </div>
+                <div class="option">
+                    <input type="radio" name="q10" value="2" id="q10-2">
+                    <label for="q10-2">Often</label>
+                </div>
+                <div class="option">
+                    <input type="radio" name="q10" value="3" id="q10-3">
+                    <label for="q10-3">Always</label>
+                </div>
+            </div>
         </div>
 
         <div class="question">
-            <p>11. Diminished sex drive or other sexual dysfunction</p>
-            <label><input type="radio" name="q11" value="0"> Never</label>
-            <label><input type="radio" name="q11" value="1"> Often</label>
-            <label><input type="radio" name="q11" value="2"> Always</label>
+            <p>11. Changes in menstrual cycle (heavier, irregular, or more painful periods)</p>
+            <div class="options">
+                <div class="option">
+                    <input type="radio" name="q11" value="0" id="q11-0">
+                    <label for="q11-0">Never</label>
+                </div>
+                <div class="option">
+                    <input type="radio" name="q11" value="1" id="q11-1">
+                    <label for="q11-1">Sometimes</label>
+                </div>
+                <div class="option">
+                    <input type="radio" name="q11" value="2" id="q11-2">
+                    <label for="q11-2">Often</label>
+                </div>
+                <div class="option">
+                    <input type="radio" name="q11" value="3" id="q11-3">
+                    <label for="q11-3">Always</label>
+                </div>
+            </div>
         </div>
 
         <div class="question">
-            <p>12. Body aches (e.g., headache, joint aches, muscle aches)</p>
-            <label><input type="radio" name="q12" value="0"> Never</label>
-            <label><input type="radio" name="q12" value="1"> Often</label>
-            <label><input type="radio" name="q12" value="2"> Always</label>
+            <p>12. Muscle aches, joint pain, or weakness</p>
+            <div class="options">
+                <div class="option">
+                    <input type="radio" name="q12" value="0" id="q12-0">
+                    <label for="q12-0">Never</label>
+                </div>
+                <div class="option">
+                    <input type="radio" name="q12" value="1" id="q12-1">
+                    <label for="q12-1">Sometimes</label>
+                </div>
+                <div class="option">
+                    <input type="radio" name="q12" value="2" id="q12-2">
+                    <label for="q12-2">Often</label>
+                </div>
+                <div class="option">
+                    <input type="radio" name="q12" value="3" id="q12-3">
+                    <label for="q12-3">Always</label>
+                </div>
+            </div>
         </div>
-        <br>
-        <button type="button" onclick="calculateThyroidRisk()" class ="btn-cta">Check Symptoms</button>
+
+        <div class="question">
+            <p>13. Hoarseness or feeling of a lump in the throat</p>
+            <div class="options">
+                <div class="option">
+                    <input type="radio" name="q13" value="0" id="q13-0">
+                    <label for="q13-0">Never</label>
+                </div>
+                <div class="option">
+                    <input type="radio" name="q13" value="1" id="q13-1">
+                    <label for="q13-1">Sometimes</label>
+                </div>
+                <div class="option">
+                    <input type="radio" name="q13" value="2" id="q13-2">
+                    <label for="q13-2">Often</label>
+                </div>
+                <div class="option">
+                    <input type="radio" name="q13" value="3" id="q13-3">
+                    <label for="q13-3">Always</label>
+                </div>
+            </div>
+        </div>
+
+        <div class="question">
+            <p>14. Elevated cholesterol levels (even with diet/exercise)</p>
+            <div class="options">
+                <div class="option">
+                    <input type="radio" name="q14" value="0" id="q14-0">
+                    <label for="q14-0">Never</label>
+                </div>
+                <div class="option">
+                    <input type="radio" name="q14" value="1" id="q14-1">
+                    <label for="q14-1">Sometimes</label>
+                </div>
+                <div class="option">
+                    <input type="radio" name="q14" value="2" id="q14-2">
+                    <label for="q14-2">Often</label>
+                </div>
+                <div class="option">
+                    <input type="radio" name="q14" value="3" id="q14-3">
+                    <label for="q14-3">Always</label>
+                </div>
+            </div>
+        </div>
+
+        <div class="question">
+            <p>15. Feeling of sluggishness after eating certain foods</p>
+            <div class="options">
+                <div class="option">
+                    <input type="radio" name="q15" value="0" id="q15-0">
+                    <label for="q15-0">Never</label>
+                </div>
+                <div class="option">
+                    <input type="radio" name="q15" value="1" id="q15-1">
+                    <label for="q15-1">Sometimes</label>
+                </div>
+                <div class="option">
+                    <input type="radio" name="q15" value="2" id="q15-2">
+                    <label for="q15-2">Often</label>
+                </div>
+                <div class="option">
+                    <input type="radio" name="q15" value="3" id="q15-3">
+                    <label for="q15-3">Always</label>
+                </div>
+            </div>
+        </div>
+
+        <button type="button" onclick="calculateThyroidRisk()" class="btn-cta">Get My Thyroid Assessment</button>
     </form>
 
-    <div id="result"></div>
+    <div id="result">
+        <div class="result-header">
+            <i class="fas fa-clipboard-check"></i>
+            <h3>Your Thyroid Wellness Report</h3>
+        </div>
+        <div class="result-content" id="resultContent">
+            <!-- Results will be inserted here -->
+        </div>
+        <div class="next-steps">
+            <h4>Recommended Next Steps</h4>
+            <ul>
+                <li>Schedule an appointment with your healthcare provider</li>
+                <li>Request thyroid function tests (TSH, Free T3, Free T4)</li>
+                <li>Consider keeping a symptom journal for 2 weeks</li>
+                <li>Review your diet for thyroid-supportive nutrients</li>
+            </ul>
+        </div>
+    </div>
     
+    <div class="thyroid-info">
+        <h3>Understanding Thyroid Health</h3>
+        <div class="info-cards">
+            <div class="info-card">
+                <h4><i class="fas fa-info-circle"></i> About Your Thyroid</h4>
+                <p>The thyroid is a butterfly-shaped gland in your neck that regulates metabolism, energy, and many bodily functions. When it's not working properly, it can affect your entire body.</p>
+            </div>
+            <div class="info-card">
+                <h4><i class="fas fa-heart"></i> Common Conditions</h4>
+                <p>Hypothyroidism (underactive thyroid) and hyperthyroidism (overactive thyroid) are the most common disorders. Women are 5-8 times more likely to develop thyroid problems.</p>
+            </div>
+            <div class="info-card">
+                <h4><i class="fas fa-utensils"></i> Nutrition Tips</h4>
+                <p>Foods rich in selenium, zinc, iodine, and omega-3s support thyroid health. Limit processed foods and consider reducing gluten if you have Hashimoto's thyroiditis.</p>
+            </div>
+        </div>
+    </div>
+    
+    <footer>
+        <div class="footer-content">
+            <p>© 2023 AVA Thyroid Wellness. All rights reserved.</p>
+            <div class="footer-links">
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms of Service</a>
+                <a href="#">Contact Us</a>
+                <a href="#">About AVA</a>
+            </div>
+            <div class="social-icons">
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-facebook"></i></a>
+                <a href="#"><i class="fab fa-pinterest"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+            </div>
+            <p><small>Disclaimer: This assessment is not a substitute for professional medical advice, diagnosis, or treatment.</small></p>
+        </div>
+    </footer>
 
     <script>
+        // Update progress bar as user answers questions
+        document.querySelectorAll('input[type="radio"]').forEach(radio => {
+            radio.addEventListener('change', updateProgress);
+        });
+        
+        function updateProgress() {
+            const totalQuestions = 15;
+            let answered = 0;
+            
+            for (let i = 1; i <= totalQuestions; i++) {
+                if (document.querySelector(`input[name="q${i}"]:checked`)) {
+                    answered++;
+                }
+            }
+            
+            const progress = (answered / totalQuestions) * 100;
+            document.getElementById('progressBar').style.width = `${progress}%`;
+        }
+        
         function calculateThyroidRisk() {
             let totalScore = 0;
-            for (let i = 1; i <= 12; i++) {
+            const totalQuestions = 15;
+            let answered = 0;
+            
+            for (let i = 1; i <= totalQuestions; i++) {
                 let selected = document.querySelector(`input[name="q${i}"]:checked`);
                 if (selected) {
                     totalScore += parseInt(selected.value);
+                    answered++;
                 }
             }
-
-            let resultText = "<h3>Assessment Result:</h3>";
-            if (totalScore < 6) {
-                resultText += "<p>No significant symptoms of thyroid imbalance detected. If concerned, consult a doctor.</p>";
-            } else if (totalScore < 14) {
-                resultText += "<p>Mild symptoms detected. Keep monitoring and consider discussing with a healthcare professional.</p>";
-            } else {
-                resultText += "<p>High likelihood of thyroid imbalance. Please consult a doctor for further evaluation.</p>";
+            
+            // Check if all questions are answered
+            if (answered < totalQuestions) {
+                alert(`Please answer all ${totalQuestions} questions for an accurate assessment. You've answered ${answered} out of ${totalQuestions}.`);
+                return;
             }
-
-            document.getElementById("result").innerHTML = resultText;
+            
+            let resultHTML = "";
+            let severityLevel = "";
+            
+            if (totalScore < 10) {
+                severityLevel = "low";
+                resultHTML = `
+                    <p style="color: var(--purple-medium); font-weight: 600;">Your score: ${totalScore} out of 45</p>
+                    <p>Your responses suggest <strong>minimal thyroid-related symptoms</strong>. This is great news!</p>
+                    <p>While your current symptoms don't strongly indicate thyroid dysfunction, it's always good to listen to your body. Consider maintaining a healthy lifestyle with balanced nutrition, regular exercise, and stress management to support your thyroid health.</p>
+                `;
+            } else if (totalScore < 25) {
+                severityLevel = "moderate";
+                resultHTML = `
+                    <p style="color: var(--pink-medium); font-weight: 600;">Your score: ${totalScore} out of 45</p>
+                    <p>Your responses indicate <strong>moderate thyroid-related symptoms</strong> that warrant attention.</p>
+                    <p>Several of your symptoms could be related to thyroid dysfunction or other hormonal imbalances. While this doesn't necessarily mean you have a thyroid condition, it would be wise to discuss these symptoms with your healthcare provider. They may recommend thyroid function tests to rule out any issues.</p>
+                `;
+            } else {
+                severityLevel = "high";
+                resultHTML = `
+                    <p style="color: var(--pink-dark); font-weight: 600;">Your score: ${totalScore} out of 45</p>
+                    <p>Your responses suggest <strong>significant thyroid-related symptoms</strong> that should be evaluated by a healthcare professional.</p>
+                    <p>The pattern and severity of your symptoms strongly indicate the possibility of thyroid dysfunction. Please schedule an appointment with your doctor to discuss these symptoms and request thyroid function tests (TSH, Free T3, and Free T4). Early detection and treatment can prevent complications and help you feel better.</p>
+                `;
+            }
+            
+            // Add personalized symptom summary
+            resultHTML += `<h4 style="margin-top: 1.5rem; color: var(--purple-dark);">Your Most Notable Symptoms:</h4><ul style="margin-left: 1.5rem;">`;
+            
+            for (let i = 1; i <= totalQuestions; i++) {
+                let selected = document.querySelector(`input[name="q${i}"]:checked`);
+                if (selected && parseInt(selected.value) >= 2) {
+                    const questionText = document.querySelector(`.question:nth-child(${i+2}) p`).textContent.replace(/^\d+\.\s/, '');
+                    resultHTML += `<li>${questionText} (${getFrequencyText(selected.value)})</li>`;
+                }
+            }
+            
+            resultHTML += `</ul>`;
+            
+            document.getElementById('resultContent').innerHTML = resultHTML;
+            document.getElementById('result').style.display = 'block';
+            
+            // Scroll to results
+            document.getElementById('result').scrollIntoView({ behavior: 'smooth' });
         }
         
+        function getFrequencyText(value) {
+            switch(value) {
+                case '1': return 'sometimes';
+                case '2': return 'often';
+                case '3': return 'always';
+                default: return '';
+            }
+        }
     </script>
 </body>
 </html>
