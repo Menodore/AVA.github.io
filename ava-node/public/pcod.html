@@ -236,6 +236,81 @@
             box-shadow: 0 0 0 3px rgba(255, 175, 204, 0.3);
         }
         
+        #result {
+            background-color: white;
+            border-radius: 20px;
+            padding: 2rem;
+            margin: 2rem auto;
+            max-width: 800px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .result-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            color: var(--purple-dark);
+        }
+        
+        .result-header i {
+            font-size: 2rem;
+            margin-right: 1rem;
+        }
+        
+        .result-header h3 {
+            font-size: 1.8rem;
+        }
+        
+        .result-content {
+            padding: 1rem;
+            border-radius: 10px;
+            margin-bottom: 1.5rem;
+        }
+        
+        .result-content p {
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+        
+        .next-steps {
+            background-color: var(--peach-light);
+            padding: 1.5rem;
+            border-radius: 15px;
+            margin-top: 1.5rem;
+        }
+        
+        .next-steps h4 {
+            color: var(--purple-dark);
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+        
+        .next-steps ul {
+            list-style-type: none;
+        }
+        
+        .next-steps li {
+            margin-bottom: 0.8rem;
+            position: relative;
+            padding-left: 1.8rem;
+        }
+        
+        .next-steps li::before {
+            content: "•";
+            color: var(--pink-dark);
+            font-size: 1.5rem;
+            position: absolute;
+            left: 0;
+            top: -3px;
+        }
+        
         footer {
             background: linear-gradient(135deg, var(--purple-medium), var(--pink-medium));
             color: white;
@@ -387,6 +462,25 @@
                 <button type="submit" class="btn-cta">Get Your Assessment</button>
             </form>
         </div>
+        
+        <div id="result">
+            <div class="result-header">
+                <i class="fas fa-clipboard-check"></i>
+                <h3>Your PCOS/PCOD Assessment</h3>
+            </div>
+            <div class="result-content" id="resultContent">
+                <!-- Results will be inserted here -->
+            </div>
+            <div class="next-steps">
+                <h4>Recommended Next Steps</h4>
+                <ul>
+                    <li>Schedule an appointment with your gynecologist</li>
+                    <li>Request hormone level tests (LH, FSH, testosterone)</li>
+                    <li>Consider keeping a symptom journal for 2-3 cycles</li>
+                    <li>Review our PCOS-friendly nutrition guide</li>
+                </ul>
+            </div>
+        </div>
     </section>
     
     <footer>
@@ -409,7 +503,7 @@
                 insulin_resistance: document.getElementById("insulin_resistance").value
             };
             
-            // Simple scoring system (for demo)
+            // Simple scoring system
             let score = 0;
             
             if (formData.irregular_periods === "often" || formData.irregular_periods === "always") score += 2;
@@ -419,16 +513,58 @@
             if (formData.insulin_resistance !== "no") score += 3;
             
             // Generate result
-            let resultMessage = "";
+            let resultHTML = "";
+            let severity = "";
+            
             if (score >= 6) {
-                resultMessage = "Your symptoms suggest a high likelihood of PCOS/PCOD. We recommend consulting a gynecologist for proper evaluation and management.";
+                severity = "high";
+                resultHTML = `
+                    <p style="color: var(--pink-dark); font-weight: 600;">Your score: ${score}/10 (High Risk)</p>
+                    <p>Your symptoms suggest a <strong>high likelihood of PCOS/PCOD</strong>. Several of your responses align with common diagnostic criteria for polycystic ovary syndrome.</p>
+                    <p>We strongly recommend consulting a gynecologist or endocrinologist for proper evaluation, which may include blood tests and ultrasound imaging.</p>
+                `;
             } else if (score >= 3) {
-                resultMessage = "You have some symptoms that may indicate PCOS/PCOD. Tracking your symptoms and lifestyle changes may help.";
+                severity = "moderate";
+                resultHTML = `
+                    <p style="color: var(--pink-medium); font-weight: 600;">Your score: ${score}/10 (Moderate Risk)</p>
+                    <p>You have <strong>some symptoms that may indicate PCOS/PCOD</strong>, but not enough for a strong indication. Hormonal imbalances or other conditions could also cause these symptoms.</p>
+                    <p>Tracking your symptoms over 2-3 cycles and discussing them with your doctor would be beneficial. Lifestyle changes may help manage your symptoms.</p>
+                `;
             } else {
-                resultMessage = "Your symptoms don't strongly suggest PCOS/PCOD, but irregular periods should always be discussed with a doctor.";
+                severity = "low";
+                resultHTML = `
+                    <p style="color: var(--purple-medium); font-weight: 600;">Your score: ${score}/10 (Low Risk)</p>
+                    <p>Your symptoms <strong>don't strongly suggest PCOS/PCOD</strong>. However, if you're experiencing irregular periods or other concerning symptoms, it's always good to discuss them with your healthcare provider.</p>
+                    <p>Maintaining a healthy lifestyle with balanced nutrition and regular exercise can help support hormonal health.</p>
+                `;
             }
             
-            alert("Assessment Result:\n\n" + resultMessage + "\n\nScore: " + score + "/10");
+            // Add symptom summary
+            resultHTML += `<h4 style="margin-top: 1.5rem; color: var(--purple-dark);">Your Key Symptoms:</h4><ul style="margin-left: 1.5rem;">`;
+            
+            if (formData.irregular_periods !== "never") {
+                resultHTML += `<li>Irregular periods (${formData.irregular_periods})</li>`;
+            }
+            if (formData.hirsutism !== "no") {
+                resultHTML += `<li>Excessive hair growth (${formData.hirsutism})</li>`;
+            }
+            if (formData.weight_gain !== "no") {
+                resultHTML += `<li>Weight concerns (${formData.weight_gain.replace('_', ' ')})</li>`;
+            }
+            if (formData.acne !== "no") {
+                resultHTML += `<li>Acne/oily skin (${formData.acne})</li>`;
+            }
+            if (formData.insulin_resistance !== "no") {
+                resultHTML += `<li>Insulin resistance (${formData.insulin_resistance.replace('type2', 'Type 2 Diabetes').replace('prediabetes', 'Prediabetes')})</li>`;
+            }
+            
+            resultHTML += `</ul>`;
+            
+            document.getElementById('resultContent').innerHTML = resultHTML;
+            document.getElementById('result').style.display = 'block';
+            
+            // Scroll to results
+            document.getElementById('result').scrollIntoView({ behavior: 'smooth' });
         });
     </script>
 </body>
