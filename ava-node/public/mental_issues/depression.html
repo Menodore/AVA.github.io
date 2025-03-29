@@ -10,13 +10,13 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary: #7209b7;
-            --primary-light: #9d4edd;
-            --secondary: #560bad;
+            --primary: #3a86ff;
+            --primary-light: #4cc9f0;
+            --secondary: #2667cc;
             --dark: #1a1a2e;
             --light: #f8f9fa;
-            --success: #4cc9f0;
-            --warning: #f72585;
+            --success: #70e000;
+            --warning: #ff006e;
             --gray: #adb5bd;
             --gray-light: #e9ecef;
         }
@@ -31,7 +31,7 @@
             font-family: 'Poppins', sans-serif;
             line-height: 1.6;
             color: var(--dark);
-            background-color: #f9f5ff;
+            background-color: #f0f8ff;
         }
 
         .container {
@@ -109,7 +109,7 @@
             align-self: flex-start;
         }
 
-        #BPDForm {
+        #DepressionForm {
             display: flex;
             flex-direction: column;
             gap: 20px;
@@ -190,7 +190,7 @@
         .btn-cta:hover {
             background-color: var(--secondary);
             transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(86, 11, 173, 0.3);
+            box-shadow: 0 5px 15px rgba(58, 134, 255, 0.3);
         }
 
         #result {
@@ -290,11 +290,26 @@
         }
 
         .scores-table tr:hover {
-            background-color: #f0e5ff;
+            background-color: #e6f0ff;
         }
 
         .hidden {
             display: none;
+        }
+
+        .crisis-alert {
+            background-color: #fff0f3;
+            border-left: 4px solid var(--warning);
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+            font-size: 0.9rem;
+        }
+
+        .crisis-alert a {
+            color: var(--warning);
+            font-weight: 600;
+            text-decoration: underline;
         }
 
         @media (max-width: 768px) {
@@ -306,15 +321,6 @@
                 width: 100%;
                 position: static;
             }
-        }
-
-        .warning-note {
-            background-color: #fff3f3;
-            border-left: 4px solid var(--warning);
-            padding: 15px;
-            margin: 20px 0;
-            border-radius: 4px;
-            font-size: 0.9rem;
         }
     </style>
 </head>
@@ -334,17 +340,17 @@
     <section class="hero">
         <div class="container">
             <h1>Depression Symptom Checker</h1>
-            <p>Assess potential symptoms of Depression</p>
+            <p>Assess potential symptoms of depression and get guidance</p>
         </div>
     </section>
 
     <div class="container">
         <div class="content-wrapper">
             <div class="form-container">
-                <div class="warning-note">
-                    <strong>Important:</strong>  This is not a diagnostic tool. Only a qualified mental health professional can diagnose depression. If you are struggling or in crisis, please seek immediate help from a trusted professional or emergency services.
+                <div class="crisis-alert">
+                    <strong>If you're in crisis:</strong> This is not a diagnostic tool. If you're having thoughts of self-harm, please call the National Suicide Prevention Lifeline at <a href="tel:988">988</a> or text HOME to 741741 for immediate help.
                 </div>
-                <form id="DForm">
+                <form id="DepressionForm">
                     <div class="question">
                         <p>1. Do you often feel sad, empty, or hopeless for most of the day?</p>
                         <div class="radio-group">
@@ -361,7 +367,7 @@
                     </div>
 
                     <div class="question">
-                        <p>2. Have you lost interest or pleasure in activities you once enjoyed?</p>
+                        <p>2. Have you lost interest in activities that you once enjoyed?</p>
                         <div class="radio-group">
                             <label class="radio-option">
                                 <input type="radio" name="q2" value="0"> Never
@@ -376,7 +382,7 @@
                     </div>
 
                     <div class="question">
-                        <p>3. Do you experience significant changes in your appetite or weight (increase or decrease)?</p>
+                        <p>3. Do you experience significant changes in your appetite (overeating or loss of appetite)?</p>
                         <div class="radio-group">
                             <label class="radio-option">
                                 <input type="radio" name="q3" value="0"> Never
@@ -406,7 +412,7 @@
                     </div>
 
                     <div class="question">
-                        <p>5. Do you feel fatigued or lack energy nearly every day?</p>
+                        <p>5. Do you feel fatigued or lack energy even after resting?</p>
                         <div class="radio-group">
                             <label class="radio-option">
                                 <input type="radio" name="q5" value="0"> Never
@@ -421,7 +427,7 @@
                     </div>
 
                     <div class="question">
-                        <p>6. Do you struggle with feelings of worthlessness or excessive guilt?</p>
+                        <p>6. Do you experience feelings of worthlessness or excessive guilt?</p>
                         <div class="radio-group">
                             <label class="radio-option">
                                 <input type="radio" name="q6" value="0"> Never
@@ -436,7 +442,7 @@
                     </div>
 
                     <div class="question">
-                        <p>7. Do you find it difficult to concentrate or make decisions?</p>
+                        <p>7. Do you have difficulty concentrating or making decisions?</p>
                         <div class="radio-group">
                             <label class="radio-option">
                                 <input type="radio" name="q7" value="0"> Never
@@ -451,7 +457,7 @@
                     </div>
 
                     <div class="question">
-                        <p>8. Do you experience persistent irritability or frustration, even over small matters?</p>
+                        <p>8. Have you lost motivation to complete daily tasks or responsibilities?</p>
                         <div class="radio-group">
                             <label class="radio-option">
                                 <input type="radio" name="q8" value="0"> Never
@@ -466,7 +472,7 @@
                     </div>
 
                     <div class="question">
-                        <p>9. Do you avoid social interactions or feel disconnected from others?</p>
+                        <p>9. Do you feel restless or unusually slow in your movements?</p>
                         <div class="radio-group">
                             <label class="radio-option">
                                 <input type="radio" name="q9" value="0"> Never
@@ -481,7 +487,7 @@
                     </div>
 
                     <div class="question">
-                        <p>10. Have you had thoughts of self-harm or suicide?</p>
+                        <p>10. Do you struggle with feelings of detachment from others?</p>
                         <div class="radio-group">
                             <label class="radio-option">
                                 <input type="radio" name="q10" value="0"> Never
@@ -496,7 +502,7 @@
                     </div>
 
                     <div class="question">
-                        <p>11. Do you feel a sense of hopelessness about the future?</p>
+                        <p>11. Do you experience frequent thoughts of self-harm or suicide?</p>
                         <div class="radio-group">
                             <label class="radio-option">
                                 <input type="radio" name="q11" value="0"> Never
@@ -511,7 +517,7 @@
                     </div>
 
                     <div class="question">
-                        <p>12. Do you experience unexplained physical symptoms such as headaches or body pain?</p>
+                        <p>12. Have you noticed increased irritability or frustration, even over small issues?</p>
                         <div class="radio-group">
                             <label class="radio-option">
                                 <input type="radio" name="q12" value="0"> Never
@@ -541,7 +547,7 @@
                     
                     <div class="progress-container">
                         <div class="progress-label">
-                            <span>BPD Symptoms</span>
+                            <span>Depression Symptoms</span>
                             <span id="progressPercentage">0%</span>
                         </div>
                         <div class="progress-bar">
@@ -642,26 +648,26 @@
             let resultTitle, resultMessage, iconColor;
             if (totalScore < 6) {
                 resultTitle = "Low Depression Symptoms";
-                resultMessage = "Your responses suggest minimal symptoms of depression. While this is a positive sign, mental well-being is important for everyone. If you ever feel overwhelmed, don’t hesitate to seek support from a trusted person or professional.";
+                resultMessage = "Your responses suggest minimal symptoms of depression. Remember that this is not a diagnosis - if you have concerns, consider speaking with a healthcare provider.";
                 iconColor = "var(--success)";
             } else if (totalScore < 14) {
                 resultTitle = "Moderate Depression Symptoms";
-                resultMessage = "Your responses indicate some symptoms associated with depression. It may help to speak with a mental health professional to explore your feelings further. You're not alone, and support is available.";
+                resultMessage = "Your responses indicate some symptoms of depression. These may be temporary, but if they persist for more than two weeks, consider reaching out to a mental health professional for support.";
                 iconColor = "var(--primary)";
             } else {
                 resultTitle = "High Depression Symptoms";
-                resultMessage = "Your responses suggest significant symptoms of depression. We strongly recommend reaching out to a mental health professional for guidance. If you're in crisis, please contact emergency services or a crisis hotline for immediate support.";
+                resultMessage = "Your responses suggest significant symptoms of depression. We strongly recommend consulting with a mental health professional. <strong>If you're having thoughts of self-harm, please call the National Suicide Prevention Lifeline at 988 or text HOME to 741741 for immediate help.</strong>";
                 iconColor = "var(--warning)";
             }
             
             document.getElementById("resultTitle").textContent = resultTitle;
-            document.getElementById("resultMessage").textContent = resultMessage;
+            document.getElementById("resultMessage").innerHTML = resultMessage;
             document.getElementById("resultIcon").style.backgroundColor = iconColor;
             document.getElementById("resultIcon").textContent = totalScore < 14 ? "✓" : "!";
 
             // Store the score - replace with actual user ID
             const userId = "user_" + Math.floor(Math.random() * 10000); // Temporary random user ID
-            const success = await submitTestScore(userId, 'BPDForm', totalScore);
+            const success = await submitTestScore(userId, 'DepressionForm', totalScore);
 
             if (success) {
                 // Update scores display
