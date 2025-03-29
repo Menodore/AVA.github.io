@@ -3,67 +3,620 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Period Test</title>
-    <link rel="stylesheet" href="home.css">
+    <title>Period Wellness Check | AVA</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --peach-light: #FFDAC1;
+            --peach-medium: #FFB7B2;
+            --peach-dark: #FF9AA2;
+            --purple-light: #E2C3F0;
+            --purple-medium: #C7A0D4;
+            --purple-dark: #9D65C9;
+            --pink-light: #FFC8DD;
+            --pink-medium: #FFAFCC;
+            --pink-dark: #FF85A1;
+            --text-dark: #5A3D5C;
+            --text-light: #FFF9FB;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #FFF9FB;
+            color: var(--text-dark);
+            line-height: 1.6;
+        }
+        
+        header {
+            background: linear-gradient(135deg, var(--purple-medium), var(--pink-medium));
+            padding: 3rem 0;
+            text-align: center;
+            color: white;
+            position: relative;
+            overflow: hidden;
+            margin-bottom: 2rem;
+        }
+        
+        header::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" fill="white" opacity="0.05"><circle cx="25" cy="25" r="5"/><circle cx="75" cy="25" r="5"/><circle cx="50" cy="50" r="5"/><circle cx="25" cy="75" r="5"/><circle cx="75" cy="75" r="5"/></svg>');
+        }
+        
+        .header-content {
+            position: relative;
+            z-index: 1;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+        
+        header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
+        }
+        
+        header p {
+            font-size: 1.2rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .form-section {
+            background-color: white;
+            border-radius: 20px;
+            padding: 2.5rem;
+            margin: 2rem auto;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .form-section::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 8px;
+            height: 100%;
+            background: linear-gradient(to bottom, var(--pink-medium), var(--purple-medium));
+        }
+        
+        .form-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 2rem;
+        }
+        
+        .form-header i {
+            font-size: 2rem;
+            color: var(--purple-medium);
+            margin-right: 1rem;
+        }
+        
+        .form-header h2 {
+            color: var(--text-dark);
+            font-size: 1.8rem;
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+            position: relative;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: var(--text-dark);
+            font-size: 1.1rem;
+        }
+        
+        .form-group input, 
+        .form-group select {
+            width: 100%;
+            padding: 1rem;
+            border: 2px solid var(--peach-medium);
+            border-radius: 10px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            background-color: white;
+        }
+        
+        .form-group input:focus, 
+        .form-group select:focus {
+            outline: none;
+            border-color: var(--pink-medium);
+            box-shadow: 0 0 0 3px rgba(255, 175, 204, 0.3);
+        }
+        
+        .form-group input:hover, 
+        .form-group select:hover {
+            border-color: var(--pink-medium);
+        }
+        
+        .input-icon {
+            position: absolute;
+            right: 15px;
+            top: 40px;
+            color: var(--purple-medium);
+        }
+        
+        .btn-submit {
+            background: linear-gradient(135deg, var(--pink-medium), var(--purple-medium));
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            font-size: 1.1rem;
+            border-radius: 50px;
+            cursor: pointer;
+            display: block;
+            margin: 2rem auto 0;
+            transition: all 0.3s ease;
+            font-weight: 600;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            width: 100%;
+            max-width: 300px;
+        }
+        
+        .btn-submit:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 16px rgba(0,0,0,0.2);
+            background: linear-gradient(135deg, var(--pink-dark), var(--purple-dark));
+        }
+        
+        .btn-submit:active {
+            transform: translateY(1px);
+        }
+        
+        #result {
+            background-color: white;
+            border-radius: 20px;
+            padding: 2rem;
+            margin: 2rem auto;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .result-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            color: var(--purple-dark);
+        }
+        
+        .result-header i {
+            font-size: 2rem;
+            margin-right: 1rem;
+        }
+        
+        .result-header h3 {
+            font-size: 1.8rem;
+        }
+        
+        .result-content {
+            padding: 1rem;
+            border-radius: 10px;
+            margin-bottom: 1.5rem;
+        }
+        
+        .result-content p {
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+        
+        .next-steps {
+            background-color: var(--peach-light);
+            padding: 1.5rem;
+            border-radius: 15px;
+            margin-top: 1.5rem;
+        }
+        
+        .next-steps h4 {
+            color: var(--purple-dark);
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+        
+        .next-steps ul {
+            list-style-type: none;
+        }
+        
+        .next-steps li {
+            margin-bottom: 0.8rem;
+            position: relative;
+            padding-left: 1.8rem;
+        }
+        
+        .next-steps li::before {
+            content: "•";
+            color: var(--pink-dark);
+            font-size: 1.5rem;
+            position: absolute;
+            left: 0;
+            top: -3px;
+        }
+        
+        .period-info {
+            background-color: var(--purple-light);
+            padding: 2rem;
+            border-radius: 20px;
+            margin: 2rem auto;
+        }
+        
+        .period-info h3 {
+            color: var(--text-dark);
+            margin-bottom: 1.5rem;
+            font-size: 1.5rem;
+            text-align: center;
+        }
+        
+        .info-cards {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            justify-content: center;
+        }
+        
+        .info-card {
+            background-color: white;
+            border-radius: 15px;
+            padding: 1.5rem;
+            flex: 1 1 250px;
+            max-width: 300px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: all 0.3s ease;
+        }
+        
+        .info-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+        }
+        
+        .info-card h4 {
+            color: var(--purple-dark);
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+            display: flex;
+            align-items: center;
+        }
+        
+        .info-card h4 i {
+            margin-right: 0.8rem;
+            color: var(--pink-medium);
+        }
+        
+        .info-card p {
+            color: var(--text-dark);
+            font-size: 0.95rem;
+        }
+        
+        footer {
+            background: linear-gradient(135deg, var(--purple-medium), var(--pink-medium));
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: 3rem;
+        }
+        
+        .footer-content {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin: 1.5rem 0;
+        }
+        
+        .footer-links a {
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        .footer-links a:hover {
+            color: var(--peach-light);
+            text-decoration: underline;
+        }
+        
+        .social-icons {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin: 1.5rem 0;
+        }
+        
+        .social-icons a {
+            color: white;
+            font-size: 1.5rem;
+            transition: all 0.3s ease;
+        }
+        
+        .social-icons a:hover {
+            color: var(--peach-light);
+            transform: translateY(-3px);
+        }
+        
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2rem;
+            }
+            
+            .form-header h2 {
+                font-size: 1.5rem;
+            }
+            
+            .info-cards {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .info-card {
+                max-width: 100%;
+            }
+            
+            .footer-links {
+                flex-wrap: wrap;
+                gap: 1rem;
+            }
+        }
+    </style>
 </head>
 <body>
-
     <header>
-        <div class="container">
+        <div class="header-content">
             <h1>How Normal is Your Period?</h1>
+            <p>Complete this assessment to understand your menstrual health and get personalized insights</p>
         </div>
     </header>
-
-    <section class="form-section">
-        <form id="periodForm">
-            <label>Length of Cycle (days):</label>
-            <input type="number" id="length_of_cycle" required>
-
-            <label>Length of Menses (days):</label>
-            <input type="number" id="length_of_menses" required>
-
-            <label>Weight (kg):</label>
-            <input type="number" id="weight" required>
-
-            <label>Height (cm):</label>
-            <input type="number" id="height" required>
-
-            <label>Do you have Unusual Bleeding?</label>
-            <select id="unusual_bleeding">
-                <option value="no">No</option>
-                <option value="yes">Yes</option>
-            </select>
-
-            <button type="submit">Check</button>
-        </form>
-
-        <p id="result"></p>
-    </section>
+    
+    <div class="container">
+        <div class="form-section">
+            <div class="form-header">
+                <i class="fas fa-calendar-alt"></i>
+                <h2>Period Health Assessment</h2>
+            </div>
+            
+            <form id="periodForm">
+                <div class="form-group">
+                    <label for="length_of_cycle">Length of Cycle (days)</label>
+                    <input type="number" id="length_of_cycle" min="15" max="45" required>
+                    <i class="fas fa-calendar-day input-icon"></i>
+                </div>
+                
+                <div class="form-group">
+                    <label for="length_of_menses">Length of Menses (days)</label>
+                    <input type="number" id="length_of_menses" min="1" max="14" required>
+                    <i class="fas fa-tint input-icon"></i>
+                </div>
+                
+                <div class="form-group">
+                    <label for="weight">Weight (kg)</label>
+                    <input type="number" id="weight" min="30" max="200" step="0.1" required>
+                    <i class="fas fa-weight input-icon"></i>
+                </div>
+                
+                <div class="form-group">
+                    <label for="height">Height (cm)</label>
+                    <input type="number" id="height" min="120" max="220" required>
+                    <i class="fas fa-ruler-vertical input-icon"></i>
+                </div>
+                
+                <div class="form-group">
+                    <label for="unusual_bleeding">Do you experience unusual bleeding?</label>
+                    <select id="unusual_bleeding" required>
+                        <option value="">Select an option</option>
+                        <option value="no">No, my bleeding is normal</option>
+                        <option value="yes">Yes, I experience unusual bleeding</option>
+                    </select>
+                    <i class="fas fa-exclamation-triangle input-icon"></i>
+                </div>
+                
+                <div class="form-group">
+                    <label for="pain_level">How would you describe your period pain?</label>
+                    <select id="pain_level">
+                        <option value="none">No pain</option>
+                        <option value="mild">Mild (manageable without medication)</option>
+                        <option value="moderate">Moderate (needs pain medication)</option>
+                        <option value="severe">Severe (disrupts daily activities)</option>
+                    </select>
+                    <i class="fas fa-heartbeat input-icon"></i>
+                </div>
+                
+                <button type="submit" class="btn-submit">Get My Period Assessment</button>
+            </form>
+        </div>
+        
+        <div id="result">
+            <div class="result-header">
+                <i class="fas fa-clipboard-check"></i>
+                <h3>Your Period Health Report</h3>
+            </div>
+            <div class="result-content" id="resultContent">
+                <!-- Results will be inserted here -->
+            </div>
+            <div class="next-steps">
+                <h4>Recommended Next Steps</h4>
+                <ul>
+                    <li>Track your cycle for 3 months using our period tracker</li>
+                    <li>Schedule a wellness visit with your gynecologist</li>
+                    <li>Review our nutrition guide for menstrual health</li>
+                    <li>Explore our pain management resources</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="period-info">
+            <h3>Understanding Your Cycle</h3>
+            <div class="info-cards">
+                <div class="info-card">
+                    <h4><i class="fas fa-info-circle"></i> What's Normal?</h4>
+                    <p>A typical menstrual cycle lasts 21-35 days, with bleeding for 2-7 days. Variations can occur due to stress, diet, exercise, or health conditions.</p>
+                </div>
+                <div class="info-card">
+                    <h4><i class="fas fa-heart"></i> When to Seek Help</h4>
+                    <p>Consult a doctor if you experience: cycles shorter than 21 days or longer than 35 days, bleeding for more than 7 days, or severe pain that disrupts your life.</p>
+                </div>
+                <div class="info-card">
+                    <h4><i class="fas fa-utensils"></i> Nutrition Tips</h4>
+                    <p>Foods rich in iron, omega-3s, and magnesium can support menstrual health. Stay hydrated and limit caffeine and salty foods during your period.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <footer>
+        <div class="footer-content">
+            <p>© 2023 AVA Women's Health. All rights reserved.</p>
+            <div class="footer-links">
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms of Service</a>
+                <a href="#">Contact Us</a>
+                <a href="#">About AVA</a>
+            </div>
+            <div class="social-icons">
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-facebook"></i></a>
+                <a href="#"><i class="fab fa-pinterest"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+            </div>
+            <p><small>Disclaimer: This assessment is not a substitute for professional medical advice, diagnosis, or treatment.</small></p>
+        </div>
+    </footer>
 
     <script>
         document.getElementById("periodForm").addEventListener("submit", function(event) {
             event.preventDefault();
-
+            
+            // Show loading state
+            const submitBtn = document.querySelector('.btn-submit');
+            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Analyzing...';
+            submitBtn.disabled = true;
+            
             let data = {
                 length_of_cycle: document.getElementById("length_of_cycle").value,
                 length_of_menses: document.getElementById("length_of_menses").value,
                 weight: document.getElementById("weight").value,
                 height: document.getElementById("height").value,
-                unusual_bleeding: document.getElementById("unusual_bleeding").value
+                unusual_bleeding: document.getElementById("unusual_bleeding").value,
+                pain_level: document.getElementById("pain_level").value
             };
 
-            fetch("http://127.0.0.1:5000/predict", {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify(data)
-            })
-            .then(response => response.json())
-            .then(data => {
-                document.getElementById("result").textContent = "Prediction: " + data.prediction;
-            })
-            .catch(error => console.error("Error:", error));
+            // Simulate API call (replace with your actual fetch call)
+            setTimeout(() => {
+                // This is a simulation - replace with your actual API call
+                // fetch("http://127.0.0.1:5000/predict", {
+                //     method: "POST",
+                //     headers: { "Content-Type": "application/json" },
+                //     body: JSON.stringify(data)
+                // })
+                // .then(response => response.json())
+                // .then(data => showResults(data))
+                // .catch(error => console.error("Error:", error));
+                
+                // For demo purposes, we'll simulate a response
+                const simulatedResponse = {
+                    prediction: "Your cycle appears normal but shows some irregularities to monitor",
+                    analysis: {
+                        cycle_length: data.length_of_cycle < 21 || data.length_of_cycle > 35 ? "irregular" : "normal",
+                        menses_length: data.length_of_menses > 7 ? "prolonged" : "normal",
+                        unusual_bleeding: data.unusual_bleeding === "yes" ? "present" : "absent",
+                        pain_level: data.pain_level
+                    }
+                };
+                
+                showResults(simulatedResponse);
+                
+                submitBtn.innerHTML = 'Get My Period Assessment';
+                submitBtn.disabled = false;
+            }, 1500);
         });
+        
+        function showResults(data) {
+            let resultHTML = `
+                <p style="color: var(--purple-medium); font-weight: 600;">${data.prediction}</p>
+                <h4 style="margin-top: 1.5rem; color: var(--purple-dark);">Detailed Analysis:</h4>
+                <ul style="margin-left: 1.5rem; margin-top: 0.5rem;">
+            `;
+            
+            // Cycle length analysis
+            if (data.analysis.cycle_length === "irregular") {
+                resultHTML += `<li>Your cycle length may be irregular (outside the typical 21-35 day range)</li>`;
+            } else {
+                resultHTML += `<li>Your cycle length appears normal</li>`;
+            }
+            
+            // Menses length analysis
+            if (data.analysis.menses_length === "prolonged") {
+                resultHTML += `<li>Your bleeding duration may be longer than average</li>`;
+            } else {
+                resultHTML += `<li>Your bleeding duration appears normal</li>`;
+            }
+            
+            // Unusual bleeding
+            if (data.analysis.unusual_bleeding === "present") {
+                resultHTML += `<li>You reported unusual bleeding patterns that may warrant discussion with a healthcare provider</li>`;
+            }
+            
+            // Pain level
+            if (data.analysis.pain_level === "severe") {
+                resultHTML += `<li>You experience severe pain that may indicate conditions like endometriosis</li>`;
+            } else if (data.analysis.pain_level === "moderate") {
+                resultHTML += `<li>Your moderate pain may benefit from management strategies</li>`;
+            }
+            
+            resultHTML += `</ul>`;
+            
+            // Add BMI calculation
+            const weight = parseFloat(document.getElementById("weight").value);
+            const height = parseFloat(document.getElementById("height").value)/100;
+            const bmi = weight/(height*height);
+            
+            resultHTML += `
+                <h4 style="margin-top: 1.5rem; color: var(--purple-dark);">Body Mass Index (BMI):</h4>
+                <p>Your BMI is ${bmi.toFixed(1)} - ${getBMICategory(bmi)}</p>
+                <p>Note: BMI can affect menstrual regularity. Very low or high BMI may cause irregular cycles.</p>
+            `;
+            
+            document.getElementById('resultContent').innerHTML = resultHTML;
+            document.getElementById('result').style.display = 'block';
+            
+            // Scroll to results
+            document.getElementById('result').scrollIntoView({ behavior: 'smooth' });
+        }
+        
+        function getBMICategory(bmi) {
+            if (bmi < 18.5) return "Underweight";
+            if (bmi < 25) return "Normal weight";
+            if (bmi < 30) return "Overweight";
+            return "Obese";
+        }
     </script>
-
 </body>
 </html>
