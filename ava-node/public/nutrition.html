@@ -442,7 +442,23 @@
             color: white;
             text-decoration: underline;
         }
+        .login-btn {
+            background-color: var(--primary);
+            color: white !important;
+            padding: 0.5rem 1.25rem;
+            border-radius: 50px;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+            font-size: inherit;
+            font-family: inherit;
+        }
         
+        .login-btn:hover {
+            background-color: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-sm);
+        }
         .social-icons {
             display: flex;
             justify-content: center;
@@ -599,7 +615,7 @@
                             </div>
                         </li>
                         <li><a href="index.html#contact">Contact</a></li>
-                        <li><a href="logout.php" class="login-btn">Logout</a></li>
+                        <li><button type="button" onclick="window.location.href='logout.php'" class="login-btn">Logout</button></li>
                     </ul>
                 </nav>
             </div>
