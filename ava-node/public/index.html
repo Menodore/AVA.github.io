@@ -3,73 +3,158 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ava - Your Wellness Companion</title>
+    <title>Ava - Women's Wellness</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="home.css">
 </head>
 <body>
-
-    <header>
+    <header class="navbar">
         <div class="container">
-            <img src="logo.png" alt="Ava Logo" class="logo" >
-            <nav>
-                <h1>AVA</h1>
-                <ul>
-                    <li><a href="login.html">Login</a></li>
-                    <li><a href="signup.html" class="btn-signup">Sign Up</a></li>
-                </ul>
-            </nav>
+            <div class="logo-nav-container">
+                <div class="logo-container">
+                    <img src="logo.png" alt="Ava Logo" class="header-logo">
+                    <div class="logo">Ava</div>
+                </div>
+                <nav>
+                    <ul class="nav-links">
+                        <li><a href="#home">Home</a></li>
+                        <li class="dropdown">
+                            <a href="#" id="aboutLink">About</a>
+                            <div class="dropdown-content">
+                                <a href="#story">Our Story</a>
+                                <a href="#mission">Mission</a>
+                            </div>
+                        </li>
+                        <li><a href="#contact">Contact</a></li>
+                        <li><a href="index.php" class="login-btn">Login</a></li>
+                    </ul>
+                </nav>
+            </div>
+            <button class="mobile-menu-btn" aria-label="Menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
         </div>
-        
     </header>
 
-    <section id="hero" class ="hero">
-        <div class="hero-content">
-            <h1>Welcome to Ava</h1>
-            <p>Ava is your trusted wellness companion. Whether its understanding your cycle, navigating PCOS, thyroid health, or lifes other changes, Ava is here to guide you with care and knowledge, helping you embrace your wellness journey with confidence.</p>
-            <a href="login.html" class="btn-cta">Start Your Journey</a>
-        </div>
-    </section>
-    
+    <main>
+        <section class="hero-section" id="home">
+            <div class="container">
+                <div class="hero-content">
+                    <h1><br>Wellness Crafted<br>for Women,<br>by Women.</h1>
+                    <p>Discover a personalized wellness journey with Ava, designed just for you.</p>
+                    <button class="cta-btn" onclick="location.href='register.php'">Get Started</button>
+                </div>
+            </div>
+            <div class="hero-wave"></div>
+        </section>
 
-    <section class="features">
-        <h2>Discover Ava</h2>
-        <div class="features-grid">
-            <div class="feature-card">
-                <a href="period-test.html">
-                    <h3>Period Tracking</h3>
-                    <p>Track your cycle with ease and gain personalized insights.</p>
-                </a>
-            </div>
-            
-            <div class="feature-card">
-                <a href="pcod.html">
-                <h3>PCOS & PCOD Support</h3>
-                <p>Understand and manage your risks with tailored guidance.</p>
-            </a>
-            </div>
-            <div class="feature-card">
-                <a href="thy.html">
-                <h3>Thyroid Predictor</h3>
-                <p>AI-powered predictions to stay informed about your thyroid health.</p>
-                </a>
-            </div>
-            <div class="feature-card">
-                <a href="mental_health.html">
-                <h3>Mental Health Resources</h3>
-                <p>Explore our mental health resources and find support when you need it.</p>
-                </a>
-            </div>
-            
-            <div class="feature-card">
-                <a href ="https://menodore.github.io/AVA.github.io/blogs.html">
-                    <h3>Curated Blogs</h3> </a>
-                    <p>Explore insightful blogs tailored to your health journey.</p>
-            </div>
-        </div>
-    </section>
+        <section class="content-section">
+            <div class="container">
+                <div class="content-box" id="story">
+                    <h3>Our Story</h3>
+                    <div class="section-divider"></div>
+                    <p>At <strong>Ava</strong>, we're more than just a wellness platform – we're a sisterhood. Founded by three women who understand the silent struggles that often go unspoken, we've created a space where women can truly be themselves, without fear of judgment.</p>
+                    <p>As friends and co-founders, we saw the gaps in the wellness industry – spaces that felt impersonal, and tools that didn't offer the support women needed for their unique health and mental wellness journeys. We wanted to build something real. Something personal. Something that could feel like the sisterhood we always wished we had – a place where women could find not just information, but also a compassionate guide who truly understands.</p>
+                    <p><strong>Ava</strong> was born from this desire. We aim to be the support that's always there, the advice that feels like it comes from your closest friend, and the tools that can help you take charge of your wellness with confidence and ease. Whether it's tracking your period, managing PCOS, exploring mental health, or just seeking someone who gets it – we're here for you, just like a sister would be.</p>
+                    <p>Because we know, sometimes the most important thing a woman can have is a sister to rely on. And that's exactly what we want to be for you.</p>
+                </div>
 
-    <footer>
-        <p>&copy; 2025 Ava. All rights reserved.</p>
+                <div class="content-box" id="mission">
+                    <h3>Our Mission</h3>
+                    <div class="section-divider"></div>
+                    <p>At Ava, we strive to create an empowering, compassionate space that encourages women to prioritize their wellness. Our mission is to provide women with the tools and support to better understand their bodies and mind, offering personalized solutions that make wellness approachable, accessible, and meaningful. </p>
+                    <p>We believe every woman deserves a sister who listens, understands, and helps guide them on their health journey, no matter where they are in life.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="content-section">
+            <div class="container">
+                <div class="content-box" id="contact">
+                    <h2>Contact Us</h2>
+                    <div class="section-divider"></div>
+                    <div class="contact-content">
+                        <p>If you have any questions or feedback, feel free to reach out:</p>
+                        <ul class="contact-list">
+                            <li><span class="bullet">•</span> Email: support@avawellness.com</li>
+                            <li><span class="bullet">•</span> Phone: +91 12345 67890</li>
+                            <li><span class="bullet">•</span> Address: Ava Wellness, IIITDM Kurnool, India</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-grid">
+                <div class="footer-column">
+                    <h4>About AVA</h4>
+                    <ul>
+                        <li><a href="#story">Our Story</a></li>
+                        <li><a href="#mission">Mission</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-links-row">
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms of Service</a>
+                <a href="#contact">Contact Us</a>
+            </div>
+            <div class="social-icons">
+                <a href="#" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+                <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                <a href="#" aria-label="Pinterest"><i class="fab fa-pinterest"></i></a>
+            </div>
+            <p class="copyright">© <span id="currentYear"></span> Ava Wellness. All rights reserved.</p>
+            <p class="disclaimer"><small>Disclaimer: This website is for informational purposes only and not a substitute for professional medical advice.</small></p>
+        </div>
     </footer>
+
+    <script>
+        document.getElementById('currentYear').textContent = new Date().getFullYear();
+        
+        const aboutLink = document.getElementById('aboutLink');
+        const dropdown = document.querySelector('.dropdown-content');
+        
+        aboutLink.addEventListener('click', (e) => {
+            e.preventDefault();
+            dropdown.classList.toggle('show');
+        });
+        
+        window.addEventListener('click', (e) => {
+            if (!e.target.matches('#aboutLink') && dropdown.classList.contains('show')) {
+                dropdown.classList.remove('show');
+            }
+        });
+        
+        const mobileBtn = document.querySelector('.mobile-menu-btn');
+        const navLinks = document.querySelector('.nav-links');
+        
+        mobileBtn.addEventListener('click', () => {
+            navLinks.classList.toggle('show');
+            mobileBtn.classList.toggle('open');
+        });
+
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    const headerHeight = document.querySelector('.navbar').offsetHeight;
+                    const targetPosition = targetElement.offsetTop - headerHeight - 20;
+                    window.scrollTo({
+                        top: targetPosition,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
 </body>
 </html>
