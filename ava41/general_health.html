@@ -1,0 +1,673 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>General Health | Ava Wellness</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --peach-light: #FFE8D6;  /* New peach light */
+            --peach-medium: #FFC4A3; /* New peach medium */
+            --peach-dark: #FF9E7D; 
+            --purple-light: #D4BBFF;
+            --purple-medium: #805bee;
+            --purple-dark: #7C3AED;
+            --pink-light: #FBCFE8;
+            --pink-medium: #F9A8D4;
+            --pink-dark: #EC4899;
+            --text-dark: #1F2937;
+            --text-light: #5b5b5c;
+            
+            --primary: var(--purple-medium);
+            --primary-light: var(--purple-light);
+            --primary-dark: var(--purple-dark);
+            --secondary: var(--pink-medium);
+            --accent: var(--peach-dark);
+            --text: var(--text-dark);
+            --bg: #FFF9FB;
+            --bg-alt: #ffffff;
+            --border: #e0e0e0;
+
+            --space-xs: 0.5rem;
+            --space-sm: 1rem;
+            --space-md: 1.5rem;
+            --space-lg: 2rem;
+            --space-xl: 3rem;
+            --shadow-sm: 0 1px 3px rgba(0,0,0,0.1);
+            --shadow-md: 0 4px 6px rgba(0,0,0,0.1);
+            --shadow-lg: 0 10px 15px rgba(0,0,0,0.1);
+            --transition: all 0.3s ease;
+        } 
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Monsterrat', sans-serif;
+            line-height: 1.6;
+            color: var(--text);
+            background-color: var(--bg);
+        }
+    
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 var(--space-md);
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: center;
+            padding: var(--space-sm) 0;
+            background-color: white;
+            box-shadow: var(--shadow-sm);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo-nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .header-logo {
+            height: 40px;
+            width: auto;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--primary);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: var(--space-md);
+            margin: 0;
+            padding: 0;
+            align-items: center;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 500;
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        /* Dropdown Styles */
+        .dropdown {
+            position: relative;
+        }
+
+        .dropdown > a::after {
+            content: " ▾";
+            font-size: 0.9em;
+        }
+
+        .dropdown-content {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background-color: white;
+            min-width: 200px;
+            box-shadow: var(--shadow-lg);
+            border-radius: 4px;
+            padding: var(--space-xs) 0;
+            z-index: 1;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(10px);
+            transition: var(--transition);
+        }
+
+        .dropdown-content a {
+            display: block;
+            padding: var(--space-xs) var(--space-sm);
+            color: var(--dark);
+        }
+
+        .dropdown-content a:hover {
+            background-color: rgba(67, 97, 238, 0.05);
+        }
+
+        .dropdown:hover .dropdown-content,
+        .dropdown-content.show {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        /* Submenu Styles */
+        .dropdown-submenu {
+            position: relative;
+        }
+
+        .dropdown-submenu > a::after {
+            content: " ▸";
+            float: right;
+        }
+
+        .submenu-content {
+            display: none;
+            position: absolute;
+            left: 100%;
+            top: 0;
+            background: white;
+            min-width: 220px;
+            max-height: 300px;
+            overflow-y: auto;
+            box-shadow: var(--shadow-lg);
+            border-radius: 0 5px 5px 5px;
+            z-index: 10;
+        }
+
+        .dropdown-submenu:hover .submenu-content {
+            display: block;
+        }
+
+        .submenu-content a {
+            padding: 10px 15px;
+            display: block;
+        }
+
+
+        .hero {
+            background:linear-gradient(135deg, var(--primary), var(--secondary));
+            padding: 3rem 0;
+            text-align: center;
+            color: white;
+            position: relative;
+            overflow: hidden;
+            min-height: 300px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+        
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 1.5rem;
+        }        
+
+        .health-categories {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: var(--space-lg);
+            margin: var(--space-xl) 0;
+        }
+
+        .health-category {
+            background-color: var(--bg-alt);
+            border-radius: 8px;
+            padding: var(--space-lg);
+            box-shadow: var(--shadow-sm);
+            transition: var(--transition);
+        }
+
+        .health-category:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .health-category h2 {
+            color: var(--primary);
+            margin-bottom: var(--space-md);
+            display: flex;
+            align-items: center;
+            gap: var(--space-sm);
+        }
+
+        .health-category h2 i {
+            font-size: 1.5rem;
+        }
+
+        .health-category p {
+            color: var(--text-light);
+            margin-bottom: var(--space-md);
+        }
+
+        .features-list {
+            list-style: none;
+        }
+
+        .features-list li {
+            margin-bottom: var(--space-sm);
+            padding-bottom: var(--space-sm);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .features-list li:last-child {
+            margin-bottom: 0;
+            padding-bottom: 0;
+            border-bottom: none;
+        }
+
+        .features-list a {
+            display: flex;
+            align-items: center;
+            gap: var(--space-sm);
+            text-decoration: none;
+            color: var(--text);
+            transition: var(--transition);
+            padding: var(--space-xs) 0;
+        }
+
+        .features-list a:hover {
+            color: var(--primary);
+        }
+
+        .features-list i {
+            color: var(--primary-light);
+            font-size: 1.1rem;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background-color: var(--primary);
+            color: white;
+            padding: var(--space-sm) var(--space-md);
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 500;
+            margin-top: var(--space-md);
+            transition: var(--transition);
+        }
+
+        .cta-button:hover {
+            background-color: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .footer {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 3rem 0;
+            margin-top: 3rem;
+        }
+
+        .footer-content {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .footer-grid {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .footer-column {
+            text-align: center;
+            margin: 0 2rem;
+        }
+
+        .footer-column h4 {
+            color: white;
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+
+        .footer-column ul {
+            list-style: none;
+            padding: 0;
+            display: inline-block;
+            text-align: left;
+        }
+
+        .footer-column li {
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-column a {
+            color: rgba(255,255,255,0.8);
+            text-decoration: none;
+            transition: var(--transition);
+            font-size: 0.95rem;
+        }
+
+        .footer-column a:hover {
+            color: white;
+            text-decoration: underline;
+        }
+
+        .footer-links-row {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .footer-links-row a {
+            color: rgba(255,255,255,0.8);
+            text-decoration: none;
+            transition: var(--transition);
+            font-size: 0.95rem;
+        }
+
+        .footer-links-row a:hover {
+            color: white;
+            text-decoration: underline;
+        }
+
+        .social-icons {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin: 1.5rem 0;
+        }
+
+        .social-icons a {
+            color: white;
+            font-size: 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .social-icons a:hover {
+            color: var(--secondary);
+            transform: translateY(-3px);
+        }
+
+        .copyright {
+            margin-top: 1rem;
+            font-size: 0.9rem;
+        }
+
+        .disclaimer {
+            margin-top: 1rem;
+            font-size: 0.8rem;
+            opacity: 0.8;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .login-btn {
+            background-color: var(--primary);
+            color: white !important;
+            padding: 0.5rem 1.25rem;
+            border-radius: 50px;
+            transition: var(--transition);
+        }
+
+        .login-btn:hover {
+            background-color: var(--secondary);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-sm);
+        }
+
+
+        .pcos-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--space-md);
+        }
+        
+        .pcos-grid .features-list li:last-child {
+            margin-bottom: var(--space-sm);
+            padding-bottom: var(--space-sm);
+            border-bottom: 1px solid var(--border);
+        }
+
+        @media (max-width: 768px) {
+            .health-categories {
+                grid-template-columns: 1fr;
+            }
+            
+            .page-header h1 {
+                font-size: 2rem;
+            }
+            
+            .page-header p {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="navbar">
+        <div class="container">
+            <div class="logo-nav-container">
+                <div class="logo-container">
+                    <img src="logo.png" alt="Ava Logo" class="header-logo">
+                    <div class="logo">Ava</div>
+                </div>
+                <nav>
+                    <ul class="nav-links">
+                        <li><a href="index.php#home">Home</a></li>
+                        <li class="dropdown">
+                            <a href="general_health.html" id="GeneralHealth">General Health</a>
+                            <div class="dropdown-content">
+                                <a href="general_issues/period_test.html">Period Health Assessment</a>
+                                <div class="dropdown-submenu">
+                                    <a href="general_issues/pcod.html">PCOS & PCOD Support</a>
+                                    <div class="submenu-content">
+                                        <a href="general_issues/pcod.html#symptom-checker">Symptom Assessment</a>
+                                        <a href="general_issues/pcos/nutrition.html">Nutrition Guide</a>
+                                        <a href="general_issues/pcos/hormone_track.html">Hormone Tracking</a>
+                                        <a href="general_issues/period_test.html">Period Health Assessment</a>
+                                        <a href="general_issues/pcos/expert_advice.html">Expert Advice</a>
+                                        <a href="general_issues/pcos/community.html">Community Supprt</a>
+                                    </div>
+                                </div>
+                                <a href="general_issues/thy.html">Thyroid Symptom Assessment</a>
+                            </div>
+                        </li>
+                            <li class="dropdown">
+                                <a href="mental_health.html" id="MentalHealth">Mental Health</a>
+                                <div class="dropdown-content">
+                                    <a href="mental_issues/adhd.html">ADHD Test</a>
+                                    <a href="mental_issues/anxiety.html">Anxiety Test</a>
+                                    <a href="mental_issues/bpd.html">Borderline Personality</a>
+                                    <a href="mental_issues/depression.html">Depression Test</a>
+                                    <a href="mental_issues/eating_disorder.html">Eating Disorders</a>
+                                    <a href="mental_issues/gambling_addiction.html">Gambling Addiction</a>
+                                    <a href="mental_issues/mania.html">Mania Test</a>
+                                    <a href="mental_issues/narc.html">Narcissism Test</a>
+                                    <a href="mental_issues/paranoia.html">Paranoia Test</a>
+                                    <a href="mental_issues/ppd.html">Postpartum Depression</a>
+                                    <a href="mental_issues/ptsd.html">PTSD Test</a>
+                                    <a href="mental_issues/sleep.html">Sleep Disorder Test</a>
+                                </div>
+                            </li>
+                        <li><a href="blogs.html">Curated Blogs</a></li>
+                        <li class="dropdown">
+                            <a href="#" id="aboutLink">About</a>
+                            <div class="dropdown-content">
+                                <a href="index.php#story">Our Story</a>
+                                <a href="index.php#mission">Mission</a>
+                            </div>
+                        </li>
+                        <li><a href="index.php#contact">Contact</a></li>
+                        <li><a href="user/logout.php" class="login-btn">Logout</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+    <main>
+
+    <section class="hero" id="home">
+            <div class="hero-content">
+                <h1>General Health Resources</h1>
+                <p>Comprehensive tools and information to support your physical health and wellness journey.</p>
+            </div>
+        </section>
+
+        <section class="container">
+            <div class="health-categories">
+                <div class="health-category">
+                   <a href="general_issues/period_test.html" style="text-decoration: none;">
+                        <h2><i class="fas fa-calendar-alt"></i> Period Health Assessment</h2>
+                      </a>
+                    <p>Assess and understand your menstrual cycle with our comprehensive tools and resources.</p>
+                    <ul class="features-list">
+                        <li>
+                            <a href="general_issues/period_test.html">
+                                <i class="fas fa-heartbeat"></i>
+                                <span>Period Health<br> Assessment</span>
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="general_issues/period_test.html#cycle-info">
+                                <i class="fas fa-book"></i>
+                                <span>Understand Your Cycle</span>
+                            </a>
+                        </li>
+                    </ul>
+                    <a href="general_issues/period_test.html" class="cta-button">Explore Period Health</a>
+                </div>
+
+                <div class="health-category">
+                    <a href="general_issues/pcod.html" style="text-decoration: none;">
+                        <h2><i class="fas fa-venus-double"></i> PCOS & PCOD Support</h2>
+                      </a>
+                   <p>Specialized resources to help manage and understand polycystic ovary conditions.</p>
+                   <div class="pcos-grid">
+                       <ul class="features-list">
+                           <li>
+                               <a href="general_issues/pcod.html#symptom-checker">
+                                   <i class="fas fa-clipboard-check"></i>
+                                    <span>Symptom Assessment</span>
+                                </a>
+                           </li>
+                           <li>
+                               <a href="general_issues/pcos/nutrition.html">
+                                   <i class="fas fa-utensils"></i>
+                                  <span>Nutrition Guide</span>
+                              </a>
+                           </li>
+                           <li>
+                               <a href="general_issues/pcos/hormone_track.html">
+                                   <i class="fas fa-chart-pie"></i>
+                                  <span>Hormone Tracking</span>
+                               </a>
+                           </li>
+                       </ul>
+                       <ul class="features-list">
+                        <li>
+                            <a href="general_issues/period_test.html">
+                                <i class="fas fa-calendar-alt"></i>
+                                <span>Period Health<br> Assessment</span>
+                            </a>
+                        </li>
+                          <li>
+                               <a href="general_issues/pcos/expert_advice.html">
+                                   <i class="fas fa-user-md"></i>
+                                   <span>Expert<br>Advice<br></span>
+                               </a>
+                           </li>
+                          <li>
+                                <a href="general_issues/pcos/community.html">
+                                   <i class="fas fa-users"></i>
+                                   <span>Community Support</span>
+                               </a>
+                         </li>
+                      </ul>
+                 </div>
+                <a href="general_issues/pcod.html" class="cta-button">Explore PCOS Support</a>
+            </div>
+
+                <div class="health-category">
+                    <h2><i class="fas fa-weight"></i>Thyroid Wellness<br> Check</h2>
+                    <p>Tools and information to monitor and understand your thyroid <br>function.</p>
+                    <ul class="features-list">
+                        <li>
+                            <a href="general_issues/thy.html">
+                                <i class="fas fa-clipboard-check"></i>
+                                <span>Thyroid Symptom <br>Assessment</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="general_issues/thy.html#thy-info">
+                                <i class="fas fa-book"></i>
+                                <span>Understanding Thyroid Health</span>
+                            </a>
+                        </li>
+                    </ul>
+                    <a href="general_issues/thy.html" class="cta-button">Explore Thyroid Tools</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-grid">
+                <div class="footer-column">
+                    <h4>About AVA</h4>
+                    <ul>
+                        <li><a href="index.php#story">Our Story</a></li>
+                        <li><a href="index.php#mission">Mission</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-links-row">
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms of Service</a>
+                <a href="index.php#contact">Contact Us</a>
+            </div>
+            <div class="social-icons">
+                <a href="#" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+                <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                <a href="#" aria-label="Pinterest"><i class="fab fa-pinterest"></i></a>
+            </div>
+            <p class="copyright">© <span id="currentYear"></span> Ava Wellness. All rights reserved.</p>
+            <p class="disclaimer"><small>Disclaimer: This website is for informational purposes only and not a substitute for professional medical advice.</small></p>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        const mobileBtn = document.querySelector('.mobile-menu-btn');
+        const navLinks = document.querySelector('.nav-links');
+        
+        mobileBtn.addEventListener('click', () => {
+            navLinks.classList.toggle('show');
+            mobileBtn.classList.toggle('open');
+        });
+
+        document.getElementById('currentYear').textContent = new Date().getFullYear();
+    </script>
+</body>
+</html>
