@@ -350,6 +350,15 @@
             padding: 2px 0;
         }
 
+        .relationship-option input[type="radio"]:checked + span {
+            background-color: var(--primary);
+            color: white;
+            border-radius: 20px;
+            padding: 8px 15px;
+            margin: -8px -15px; /* Counteract the parent padding */
+            display: inline-block;
+        }
+
         .btn-cta {
             background-color: var(--primary);
             color: white;
