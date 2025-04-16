@@ -67,6 +67,6 @@ Access your project:
 - Open your browser and navigate to: [http://localhost/ava_final](http://localhost/ava_final)
 
 
-<!-- This section is for future use -->## 🌐 Project Website  
-<!-- This section is for future use -->Project Website:  
-<!-- This section is for future use -->[https://menodore.github.io/AVA.github.io/ava-node/public/](https://menodore.github.io/AVA.github.io/ava-node/public/)
+<!-- ## 🌐 Project Website -->
+<!-- Project Website:  -->
+<!-- [https://menodore.github.io/AVA.github.io/ava-node/public/](https://menodore.github.io/AVA.github.io/ava-node/public/) -->
