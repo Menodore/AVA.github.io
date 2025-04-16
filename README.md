@@ -36,7 +36,7 @@ To run AVA locally, ensure the following software is installed on your system:
 3. **Install a text editor (if you don't have one)**:
    - Download VS Code from [https://code.visualstudio.com](https://code.visualstudio.com)
 
-##🛠️ Setup Instructions
+## 🛠️ Setup Instructions
 
 1. **Start your local server**:
    - Launch XAMPP Control Panel
@@ -61,8 +61,7 @@ To run AVA locally, ensure the following software is installed on your system:
      $pass="";
      $db="ava";
      ```
-
-##🚀 Quick Start
+## 🚀 Quick Start
 
 Access your project:
 - Open your browser and navigate to: [http://localhost/ava_final](http://localhost/ava_final)
